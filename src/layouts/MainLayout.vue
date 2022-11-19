@@ -17,8 +17,11 @@
         </div>
       </q-toolbar>
     </q-header>
-    <q-footer reveal elevated class="q-secondary">
+    <q-footer reveal elevated class="bg-primary text-white">
       <q-toolbar>
+        <q-space/>
+          &copy; 2022 FMOcc: | Fundamentos de programacion en internet
+        <q-space/>
       </q-toolbar>
     </q-footer>
     <q-drawer v-model="leftDrawerOpen" class="bg-primary text-white">
