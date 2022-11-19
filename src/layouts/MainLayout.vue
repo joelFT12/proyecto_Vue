@@ -1,18 +1,24 @@
 <template>
   <q-layout view="lHh lpR fFf">
-    <q-header bordered class="bg-purple-8">
+    <q-header bordered>
       <q-toolbar>
-        <q-btn flat dense round icon="fa-solid fa-bars" aria-label="Menu" @click="toggleLeftDrawer" />
+        <q-btn class="" flat dense round icon="fa-solid fa-bars" aria-label="Menu" @click="toggleLeftDrawer" />
 
         <q-toolbar-title>
-          Cellphone Ebay
+          Tienda CellPhone
         </q-toolbar-title>
+        <div>
+          <q-btn class="q-mr-md" color="secondary" label="Inicio "/>
+          <q-btn class="q-mr-md" color="primary" label="Estadisticas" />
+          <q-btn class="q-mr-md" round color="primary" icon="fa-solid fa-circle-plus" />
+          <q-btn class="q-mr-md" round color="primary" icon="fa-solid fa-cart-shopping" />
 
+        </div>
       </q-toolbar>
     </q-header>
-    <q-footer reveal elevated class="bg-purple-3 text-dark ">
+    <q-footer reveal elevated class="q-secondary">
       <q-toolbar>
-        <q-toolbar-title class="text-center">Footer</q-toolbar-title>
+        <q-toolbar-title class="text-center">FMOcc: Fundamentos de programacion en internet</q-toolbar-title>
       </q-toolbar>
     </q-footer>
     <q-drawer v-model="leftDrawerOpen">
@@ -83,12 +89,3 @@ export default defineComponent({
   }
 })
 </script>
-
-<style>
-@import url('https://fonts.googleapis.com/css2?family=Comfortaa:wght@500;700&family=Quicksand:wght@700&family=Space+Mono&display=swap');
-
-* {
-  font-family: 'Quicksand', sans-serif;
-
-}
-</style>
