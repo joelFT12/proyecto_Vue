@@ -5,11 +5,12 @@
         <q-btn class="" flat dense round icon="fa-solid fa-bars" aria-label="Menu" @click="toggleLeftDrawer" />
 
         <q-toolbar-title>
+          <i class="fa-solid fa-bullhorn"></i>
           Tienda CellPhone
         </q-toolbar-title>
         <div>
           <q-btn class="q-mr-md" color="secondary" label="Inicio "/>
-          <q-btn class="q-mr-md" color="primary" label="Estadisticas" />
+          <q-btn class="q-mr-md" color="secondary" label="Estadisticas" />
           <q-btn class="q-mr-md" round color="primary" icon="fa-solid fa-circle-plus" />
           <q-btn class="q-mr-md" round color="primary" icon="fa-solid fa-cart-shopping" />
 
@@ -18,13 +19,13 @@
     </q-header>
     <q-footer reveal elevated class="q-secondary">
       <q-toolbar>
-        <q-toolbar-title class="text-center">FMOcc: Fundamentos de programacion en internet</q-toolbar-title>
       </q-toolbar>
     </q-footer>
-    <q-drawer v-model="leftDrawerOpen">
+    <q-drawer v-model="leftDrawerOpen" class="bg-primary text-white">
       <q-list>
-        <q-item-label header>
-          Tienda CellPhone
+        <q-item-label  header class="text-white row justify-center">
+          <i class="fa-solid fa-bullhorn"></i>
+          <span class="q-ml-sm">Tienda CellPhone</span>
         </q-item-label>
 
         <EssentialLink v-for="link in essentialLinks" :key="link.title" v-bind="link" />
