@@ -13,7 +13,6 @@
           <q-btn class="q-mr-md" color="secondary" label="Estadisticas" />
           <q-btn class="q-mr-md" round color="primary" icon="fa-solid fa-circle-plus" />
           <q-btn class="q-mr-md" round color="primary" icon="fa-solid fa-cart-shopping" />
-
         </div>
       </q-toolbar>
     </q-header>
@@ -45,6 +44,7 @@
 <script>
 import { defineComponent, ref } from 'vue'
 import EssentialLink from 'components/EssentialLink.vue'
+// import modalAgregar from 'components/modalAgregar.vue'
 
 const linksList = [
   {
@@ -78,6 +78,7 @@ export default defineComponent({
 
   components: {
     EssentialLink
+    // modalAgregar
   },
 
   setup () {
