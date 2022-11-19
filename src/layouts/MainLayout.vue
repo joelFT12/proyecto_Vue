@@ -1,43 +1,37 @@
 <template>
-  <q-layout view="lHh Lpr lFf" >
-    <q-header elevated class="bg-purple-8" >
-      <q-toolbar >
-        <q-btn
-          flat
-          dense
-          round
-          icon="menu"
-          aria-label="Menu"
-          @click="toggleLeftDrawer"
-        />
+  <q-layout view="lHh lpR fFf">
+    <q-header bordered>
+      <q-toolbar>
+        <q-btn class="" flat dense round icon="fa-solid fa-bars" aria-label="Menu" @click="toggleLeftDrawer" />
 
         <q-toolbar-title>
-            <modalAgregar></modalAgregar>
+          <i class="fa-solid fa-bullhorn"></i>
+          Tienda CellPhone
         </q-toolbar-title>
+        <div>
+          <q-btn class="q-mr-md" color="secondary" label="Inicio "/>
+          <q-btn class="q-mr-md" color="secondary" label="Estadisticas" />
+          <q-btn class="q-mr-md" round color="primary" icon="fa-solid fa-circle-plus" />
+          <q-btn class="q-mr-md" round color="primary" icon="fa-solid fa-cart-shopping" />
 
+        </div>
       </q-toolbar>
     </q-header>
-    <q-footer reveal elevated class="bg-purple-3 text-dark " >
+    <q-footer reveal elevated class="bg-primary text-white">
       <q-toolbar>
-        <q-toolbar-title class="text-center">Footer</q-toolbar-title>
+        <q-space/>
+          &copy; 2022 FMOcc: | Fundamentos de programacion en internet
+        <q-space/>
       </q-toolbar>
     </q-footer>
-    <q-drawer
-      v-model="leftDrawerOpen"
-
-    >
+    <q-drawer v-model="leftDrawerOpen" class="bg-primary text-white">
       <q-list>
-        <q-item-label
-          header
-        >
-          Desplegable
+        <q-item-label  header class="text-white row justify-center">
+          <i class="fa-solid fa-bullhorn"></i>
+          <span class="q-ml-sm">Tienda CellPhone</span>
         </q-item-label>
 
-        <EssentialLink
-          v-for="link in essentialLinks"
-          :key="link.title"
-          v-bind="link"
-        />
+        <EssentialLink v-for="link in essentialLinks" :key="link.title" v-bind="link" />
       </q-list>
     </q-drawer>
 
@@ -45,55 +39,37 @@
       <router-view />
     </q-page-container>
   </q-layout>
+
 </template>
 
 <script>
 import { defineComponent, ref } from 'vue'
 import EssentialLink from 'components/EssentialLink.vue'
-import modalAgregar from 'src/components/modalAgregar.vue'
 
 const linksList = [
   {
-    title: 'Docs',
-    caption: 'quasar.dev',
-    icon: 'school',
+    title: 'Inicio',
+    caption: '',
+    icon: 'fa-solid fa-house',
     link: 'https://quasar.dev'
   },
   {
-    title: 'Github',
-    caption: 'github.com/quasarframework',
-    icon: 'code',
+    title: 'Nuevo Anuncio',
+    caption: '',
+    icon: 'fa-solid fa-circle-plus',
     link: 'https://github.com/quasarframework'
   },
   {
-    title: 'Discord Chat Channel',
-    caption: 'chat.quasar.dev',
-    icon: 'chat',
+    title: 'Carrito',
+    caption: '',
+    icon: 'fa-solid fa-cart-shopping',
     link: 'https://chat.quasar.dev'
   },
   {
-    title: 'Forum',
-    caption: 'forum.quasar.dev',
-    icon: 'record_voice_over',
+    title: 'Estadisticas',
+    caption: '',
+    icon: 'fa-solid fa-chart-bar',
     link: 'https://forum.quasar.dev'
-  },
-  {
-    title: 'Twitter',
-    caption: '@quasarframework',
-    icon: 'rss_feed',
-    link: 'https://twitter.quasar.dev'
-  },
-  {
-    title: 'Facebook',
-    caption: '@QuasarFramework',
-    icon: 'public',
-    link: 'https://facebook.quasar.dev'
-  },
-  {
-    title: 'Quasar Awesome',
-    caption: 'Community Quasar projects',
-    icon: 'favorite',
-    link: 'https://awesome.quasar.dev'
   }
 ]
 
@@ -101,8 +77,7 @@ export default defineComponent({
   name: 'MainLayout',
 
   components: {
-    EssentialLink,
-    modalAgregar
+    EssentialLink
   },
 
   setup () {
@@ -118,13 +93,3 @@ export default defineComponent({
   }
 })
 </script>
-
-<style>
-@import url('https://fonts.googleapis.com/css2?family=Comfortaa:wght@500;700&family=Quicksand:wght@700&family=Space+Mono&display=swap');
-
-*{
-    font-family: 'Quicksand', sans-serif;
-
-}
-
-</style>
