@@ -12,7 +12,7 @@
         />
 
         <q-toolbar-title>
-          Cellphone Ebay
+            <modalAgregar></modalAgregar>
         </q-toolbar-title>
 
       </q-toolbar>
@@ -50,6 +50,7 @@
 <script>
 import { defineComponent, ref } from 'vue'
 import EssentialLink from 'components/EssentialLink.vue'
+import modalAgregar from 'src/components/modalAgregar.vue'
 
 const linksList = [
   {
@@ -100,7 +101,8 @@ export default defineComponent({
   name: 'MainLayout',
 
   components: {
-    EssentialLink
+    EssentialLink,
+    modalAgregar
   },
 
   setup () {
