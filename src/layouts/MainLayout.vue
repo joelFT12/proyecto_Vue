@@ -2,18 +2,19 @@
   <q-layout view="lHh lpR fFf">
     <q-header bordered>
       <q-toolbar>
-        <q-btn class="" flat dense round icon="fa-solid fa-bars" aria-label="Menu" @click="toggleLeftDrawer" />
+        <q-btn class="lt-md hidde" flat dense round icon="fa-solid fa-bars" aria-label="Menu" @click="toggleLeftDrawer" />
 
         <q-toolbar-title>
           <i class="fa-solid fa-bullhorn"></i>
           Tienda CellPhone
         </q-toolbar-title>
-        <div>
+        <div class="gt-sm hidde">
           <q-btn class="q-mr-md" color="secondary" label="Inicio "/>
           <q-btn class="q-mr-md" color="secondary" label="Estadisticas" />
-          <q-btn class="q-mr-md" round color="primary" icon="fa-solid fa-circle-plus" />
+          <!-- <q-btn class="q-mr-md" round color="primary" icon="fa-solid fa-circle-plus" /> -->
           <q-btn class="q-mr-md" round color="primary" icon="fa-solid fa-cart-shopping" />
         </div>
+        <div class="gt-sm hidde"><modalAgregar></modalAgregar></div>
       </q-toolbar>
     </q-header>
     <q-footer reveal elevated class="bg-primary text-white">
@@ -44,7 +45,7 @@
 <script>
 import { defineComponent, ref } from 'vue'
 import EssentialLink from 'components/EssentialLink.vue'
-// import modalAgregar from 'components/modalAgregar.vue'
+import modalAgregar from 'components/modalAgregar.vue'
 
 const linksList = [
   {
@@ -64,12 +65,6 @@ const linksList = [
     caption: '',
     icon: 'fa-solid fa-cart-shopping',
     link: 'https://chat.quasar.dev'
-  },
-  {
-    title: 'Estadisticas',
-    caption: '',
-    icon: 'fa-solid fa-chart-bar',
-    link: 'https://forum.quasar.dev'
   }
 ]
 
@@ -77,8 +72,8 @@ export default defineComponent({
   name: 'MainLayout',
 
   components: {
-    EssentialLink
-    // modalAgregar
+    EssentialLink,
+    modalAgregar
   },
 
   setup () {

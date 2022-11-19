@@ -1,7 +1,7 @@
 <template>
 
-    <div class="q-pa-md q-gutter-sm">
-      <q-icon labal="maximized" name="fa-solid fa-circle-plus" color="purple-3" size="32px"  @click="dialog = true" />
+    <div class="">
+      <q-btn round labal="maximized" icon="fa-solid fa-circle-plus"   @click="dialog = true" />
 
       <q-dialog
         v-model="dialog"

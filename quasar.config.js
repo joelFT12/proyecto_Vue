@@ -40,16 +40,16 @@ module.exports = configure(function (/* ctx */) {
     extras: [
       // 'ionicons-v4',
       // 'mdi-v5',
-      'fontawesome-v6'
+      'fontawesome-v6',
       // 'eva-icons',
       // 'themify',
       // 'line-awesome',
       // 'roboto-font-latin-ext', // this or either 'roboto-font', NEVER both!
-      // 'bootstrap-icons',
+      'bootstrap-icons',
       // 'roboto-font', // optional, you are not bound to it
       // 'material-icons' // optional, you are not bound to it
       // 'roboto-font', // optional, you are not bound to it
-      // 'material-icons' // optional, you are not bound to it
+      'material-icons' // optional, you are not bound to it
 
     ],
 
