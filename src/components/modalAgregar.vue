@@ -13,13 +13,6 @@
         <q-card class="bg-purple-8 text-white">
           <q-bar>
             <q-space />
-
-            <q-btn dense flat icon="minimize" @click="maximizedToggle = false" :disable="!maximizedToggle">
-              <q-tooltip v-if="maximizedToggle" class="bg-white text-primary">Minimizar</q-tooltip>
-            </q-btn>
-            <q-btn dense flat icon="crop_square" @click="maximizedToggle = true" :disable="maximizedToggle">
-              <q-tooltip v-if="!maximizedToggle" class="bg-white text-primary">Maximizar</q-tooltip>
-            </q-btn>
             <q-btn dense flat icon="close" v-close-popup>
               <q-tooltip class="bg-white text-primary">Cerrar</q-tooltip>
             </q-btn>
@@ -32,35 +25,35 @@
           </q-card-section>
 
           <q-card-section class="q-pt-none">
-            <div class="row d-flex justify-content-around ">
+            <div class="row justify-evenly ">
 
               <!-- contenedor 1 -->
-              <div
-                class="  col-lg-5 col-sm-10  flex bg-white text-black contenedor1">
+              <div class="  col-lg-6 col-md-6  col-sm-6 col-xs-12  bg-white text-black contenedor1">
 
-                <div class=" aling-items center ">
+                <div class="col-12">
                   <!-- estado del movil -->
-                  <div class="maar row " style="margin-bottom:20px">
-                    <label for="inputPantalla" class="col-sm-3 ">Estado: </label>
-                    <div class="col-sm-5 pt-2 flex justify-between aling-items center ">
-                      <div class="form-check form-check-inline ">
-
-                        <input class="form-check-input " type="radio" name="inlineRadioOptions" id="inlineRadio1"
-                          value="option1">
-                        <label class="form-check-label" for="inlineRadio1">  Nuevo</label>
-                      </div>
-                      <div class="form-check form-check-inline">
-                        <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio2"
-                          value="option2">
-                        <label class="form-check-label text-muted" for="inlineRadio2">  Usado</label>
-                      </div>
-
+                  <div class="row items-center " style="margin-bottom:20px">
+                    <label for="inputPantalla" class="col-lg-2 col-md-2  col-sm-2 col-xs-2">Estado: </label>
+                    <div>
+                      <q-form
+                      @submit="onSubmit"
+                      @reset="onReset"
+                    >
+                      <q-option-group
+                        v-model="group"
+                        :options="options"
+                        color="primary"
+                        inline
+                      />
+                      </q-form>
                     </div>
+
                   </div>
+
                   <!-- marca -->
                   <div class="row items-center maar">
-                    <label for="inputMarca" class="col-sm-3 " style="margin-top:-12px">Marca: </label>
-                    <div class="col-sm-5 " style="max-width: 300px">
+                    <label for="inputMarca" class="col-lg-2 col-md-2  col-sm-2 col-xs-2" style="margin-top:-12px">Marca: </label>
+                    <div class="col-5">
                       <q-form
                       @submit="onSubmit"
                       @reset="onReset"
@@ -79,8 +72,8 @@
                   </div>
                   <!-- modelo -->
                   <div class="row items-center maar">
-                    <label for="inputMarca" class="col-sm-3 " style="margin-top:-12px">Modelo: </label>
-                    <div class="col-sm-5 " style="max-width: 300px">
+                    <label for="inputMarca" class="col-lg-2 col-md-2  col-sm-2 col-xs-2" style="margin-top:-12px">Modelo: </label>
+                    <div class="col-5 ">
                       <q-form
                       @submit="onSubmit"
                       @reset="onReset"
@@ -100,8 +93,8 @@
                   </div>
                   <!-- pantalla -->
                   <div class="row items-center maar">
-                    <label for="inputMarca" class="col-sm-3 " style="margin-top:-12px">Pantalla: </label>
-                    <div class="col-sm-5 " style="max-width: 300px">
+                    <label for="inputMarca" class="col-lg-2 col-md-2  col-sm-2 col-xs-2" style="margin-top:-12px">Pantalla: </label>
+                    <div class="col-4 ">
                       <q-form
                       @submit="onSubmit"
                       @reset="onReset"
@@ -125,19 +118,16 @@
 
                   <!-- sistema -->
                   <div class=" maar row items-center" style="margin-bottom:20px">
-                    <label for="inputSis" class="col-sm-3 col-form-label">Sistema:</label>
-                    <div class="col-sm-6">
-                      <select class="form-select rounded-2 mx-1 entrada " id="sistema">
-                        <option selected>Ios</option>
-                        <option value="1">Android</option>
-                      </select>
-
+                    <label for="inputSis" class="col-lg-2 col-md-2  col-sm-2 col-xs-2">Sistema:</label>
+                    <div class="col-3">
+                    <sistemaOpt></sistemaOpt>
                     </div>
+
                   </div>
                   <!-- rom -->
                   <div class="row items-center maar">
-                    <label for="inputMarca" class=" col-10 col-sm-3 " style="margin-top:-12px">ROM: </label>
-                    <div class="col-sm-5 " style="max-width: 300px">
+                    <label for="inputMarca" class="col-lg-2 col-md-2 col-sm-2 col-xs-2" style="margin-top:-12px">ROM: </label>
+                    <div class="col-4">
                       <q-form
                       @submit="onSubmit"
                       @reset="onReset"
@@ -148,7 +138,7 @@
                         type="number"
                         filled
                         v-model="rom"
-                        label="ROM"
+                        label="ROM "
                         lazy-rules
                         :rules="[val => val !== null && val !== '' || 'Escribe un numero',
                                 val => val > 0 && val < 512 || 'Ingresa otro numero']"
@@ -156,13 +146,13 @@
                     </q-form>
 
                     </div>
-                    <span  class="col-sm-2" style="margin:-20px 0 0 10px ">Almacenamiento interno</span>
+                    <span  class="col-lg-4 col-md-4  col-sm-4 col-xs-4" style="margin:-20px 0 0 10px ">Almacenamiento interno</span>
 
                   </div>
                   <!-- ram -->
                   <div class="row items-center maar">
-                    <label for="inputMarca" class="col-sm-3 " style="margin-top:-12px">RAM: </label>
-                    <div class="col-sm-5 " style="max-width: 300px">
+                    <label for="inputMarca" class="col-lg-2 col-md-2  col-sm-2 col-xs-2" style="margin-top:-12px">RAM: </label>
+                    <div class="col-4">
                       <q-form
                       @submit="onSubmit"
                       @reset="onReset"
@@ -188,40 +178,120 @@
               </div>
 
               <!-- contenedor 2 -->
-              <!-- <div class=" col-lg-5 col-sm-10 d-flex flex-column justify-content-baseline
-                       text-light  mb-4 rounded-2 px-4 py-4 mt-0 d-none d-lg-block text-white" >
-                <div class="mb-3 row">
-                  <p>Titulo breve del anuncio:</p>
+              <div class="col-lg-5 col-sm-5 col-xs-12  text-white column justify-center q-gutter-y-md">
+                <!-- titulo -->
+                <div class="row q-gutter-y-md">
+                  <label class="col-6">Titulo breve del anuncio:</label>
 
-                  <div class="col-sm-12 mb-2">
-                    <input type="text" class="form-control mx-1" id="titulo" placeholder="Titulo">
+                  <div class="col-12">
+                    <q-form
+                    @submit="onSubmit"
+                    @reset="onReset"
+                  >
+                    <q-input
+                      color="purple-9"
+
+                      bg-color="white"
+                      filled
+                      type="text"
+                      v-model="titulo"
+                      label="Escribe un titulo para el anuncio"
+                      lazy-rules
+                      :rules="[ val => val && val.length > 0 || '']"
+                    />
+                  </q-form>
+                  </div>
+                </div>
+                <!-- vendedor -->
+                <div class="row items-center ">
+                  <label class="col-lg-2 col-md-2 col-sm-2 col-xs-3" style="margin-top:-12px">Vendedor: </label>
+                  <div class="col-7">
+                    <q-form
+                    @submit="onSubmit"
+                    @reset="onReset"
+                  >
+                    <q-input
+                      color="purple-9"
+                      bg-color="white"
+                      dense
+                      filled
+                      type="text"
+                      v-model="vendedor"
+                      label="Vendedor"
+                      lazy-rules
+                      :rules="[ val => val && val.length > 0 || '']"
+                    />
+                  </q-form>
+                  </div>
+                </div>
+                <!-- telefono -->
+                <div class="row items-center ">
+                  <label class="col-lg-2 col-md-2 col-sm-2 col-xs-3" style="margin-top:-12px">Telefono: </label>
+                  <div class="col-5">
+                    <q-form
+                    @submit="onSubmit"
+                    @reset="onReset"
+                  >
+                    <q-input
+                      dense
+                      color="purple-9"
+                      bg-color="white"
+                      type="tel"
+                      filled
+                      v-model="telefono"
+                      label="Telefono"
+                      lazy-rules
+                      :rules="[val => val !== null && val !== '' || 'Escribe un numero',
+                      val => val > 0 && val < 99999999 || 'Ingresa otro numero']"
+                    />
+                  </q-form>
+
+                  </div>
+
+                </div>
+                <!-- Descripcion -->
+                <div class="row items-center q-gutter-y-md">
+                  <label class="col-lg-2 col-md-2 col-sm-2 col-xs-3" style="margin-top:-12px">Descripción: </label>
+                  <div class="col-12" >
+                    <q-form
+                    @submit="onSubmit"
+                    @reset="onReset"
+                  >
+                    <q-input
+                      color="purple-9"
+                      bg-color="white"
+                      dense
+                      filled
+                      type="textarea"
+                      v-model="des"
+                      label="Descripcion del articulo"
+                      lazy-rules
+                      :rules="[ val => val && val.length > 0 || '']"
+                    />
+                  </q-form>
                   </div>
                 </div>
 
-                <div class="mb-3 row">
-                  <label for="inputVen" class="col-sm-2 col-form-label">Vendedor: </label>
-                  <div class="col-sm-8 mb-2">
-                    <input type="text" class="form-control mx-1" id="vendedor" placeholder="Nombre">
-
-                  </div>
-                </div>
-
-                <div class="mb-3 row">
-                  <label for="inputTelefoo" class="col-sm-2 col-form-label">Telefono: </label>
-                  <div class="col-sm-5 mb-2">
-                    <input type="text" class="form-control mx-1" id="telefono" placeholder="1234-5678">
-                  </div>
-                </div>
-
-                <div class="mb-3  mt-3">
-                  <label for="exampleFormControlTextarea1" class="form-label">DESCRIPCION:</label>
-                  <textarea class="form-control mt-2 mb-0 pb-0" id="exampleFormControlTextarea1" rows="3"
-                    placeholder="Descripcion del articulo"></textarea>
-                </div>
-
-              </div> -->
-
+              </div>
+            </div>
+            <div class="row justify-evenly ">
               <!-- contenedor 3 -->
+              <div class="col-lg-6 col-md-6  col-sm-6 col-xs-12  bg-white text-black contenedor1  q-gutter-y-md">
+                <label>Añadir imagenes de producto a vender</label>
+                  <div class="row justify-center " >
+                    <agregarFotos ></agregarFotos>
+                </div>
+
+              </div>
+
+             <!-- contenedor 4 -->
+             <div class="col-lg-5 col-md-5  col-sm-5 col-xs-12  text-black contenedor1 column justify-center">
+              <div class="row justify-center ">
+              <confirmarProducto></confirmarProducto>
+            </div>
+             </div>
+             </div>
+
               <!-- <div class=" col-lg-6 col-sm-10 bg-purple-1 d-flex flex-column justify-content-around
                   align-items-baseline bg-light rounded-2 px-4 py-4 mt-0 d-none d-lg-block text-black">
 
@@ -307,7 +377,6 @@
                 </div>
               </div> -->
 
-            </div>
           </q-card-section>
         </q-card>
       </q-dialog>
@@ -318,8 +387,15 @@
 <script>
 import { useQuasar } from 'quasar'
 import { ref } from 'vue'
-
+import sistemaOpt from 'components/sistemaOpt.vue'
+import agregarFotos from 'components/agregarFotos.vue'
+import confirmarProducto from 'components/confirmarProducto.vue'
 export default {
+  components: {
+    sistemaOpt,
+    agregarFotos,
+    confirmarProducto
+  },
   setup () {
     const $q = useQuasar()
 
@@ -329,6 +405,10 @@ export default {
     const rom = ref(null)
     const ram = ref(null)
     const accept = ref(false)
+    const titulo = ref(null)
+    const vendedor = ref(null)
+    const telefono = ref(null)
+    const des = ref(null)
 
     return {
       dialog: ref(false),
@@ -338,7 +418,31 @@ export default {
       pantalla,
       rom,
       ram,
+      titulo,
+      vendedor,
+      telefono,
+      des,
       accept,
+
+      color: ref('purple-9'),
+      group: ref(''),
+
+      options: [
+        {
+          label: 'Nuevo',
+          value: 'op1'
+        },
+        {
+          label: 'Usado',
+          value: 'op2'
+        }
+      ],
+
+      model: ref('Google'),
+
+      optiones: [
+        'Google', 'Facebook', 'Twitter', 'Apple', 'Oracle'
+      ],
 
       onSubmit () {
         if (accept.value !== true) {
@@ -363,6 +467,10 @@ export default {
         pantalla.value = null
         rom.value = null
         ram.value = null
+        titulo.value = null
+        vendedor.value = null
+        telefono.value = null
+        des.value = null
 
         accept.value = false
       }
@@ -376,6 +484,7 @@ export default {
 .contenedor1{
   padding: 1.3em;
   border-radius: .5em;
+  margin-top: 1em;
 
 }
 

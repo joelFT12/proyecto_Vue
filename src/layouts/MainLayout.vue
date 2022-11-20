@@ -89,3 +89,13 @@ export default defineComponent({
   }
 })
 </script>
+
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Comfortaa:wght@500;700&family=Quicksand:wght@700&family=Space+Mono&display=swap');
+
+*{
+    font-family: 'Quicksand', sans-serif;
+
+}
+
+</style>

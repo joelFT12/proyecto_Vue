@@ -1,7 +1,7 @@
 <template>
-  <div class="q-pa-md">
+  <div class="">
     <div class="espacio">
-        <q-carousel class="tamanio rounded-borders shadow-3"
+        <q-carousel class="tamanio rounded-borders shadow-3 "  style="width: 40em ;"
           animated
           v-model="slide"
           navigation
@@ -17,7 +17,8 @@
           <q-carousel-slide class="bg-purple-6" :name="2"/>
           <q-carousel-slide class="bg-purple-7" :name="3"/>
           <q-carousel-slide class="bg-purple-8" :name="4"/>
-        </q-carousel></div>
+        </q-carousel>
+      </div>
 </div>
 
 </template>
