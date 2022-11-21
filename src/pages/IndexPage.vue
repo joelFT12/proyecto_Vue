@@ -14,7 +14,11 @@
           <span class="text-h6 text-primary">Marcas</span>
           <q-item clickable v-ripple class="">
             <q-item-section>
-              <q-checkbox v-model="right" label="Samsung" />
+              <q-checkbox v-model="right" label="Samsung">
+                <q-badge color="bg-primary q-ml-sm" align="top">
+                  23
+                </q-badge>
+              </q-checkbox>
             </q-item-section>
           </q-item>
           <q-item clickable v-ripple class="">
@@ -87,8 +91,8 @@
                 64GB, 2GB Ram, Color Negro
               </q-card-section>
               <q-separator />
-              <q-card-actions>
-                <q-btn flat color="primary">Action 2</q-btn>
+              <q-card-actions class="flex justify-end">
+                <q-btn outline color="primary">Detalles</q-btn>
               </q-card-actions>
             </q-card>
           </div>
