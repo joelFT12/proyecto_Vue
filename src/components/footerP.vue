@@ -56,7 +56,7 @@
       </div>
     </section>
     <!-- nombre de materia -->
-    <div class="text-center bg-purple-7 q-pt-lg q-pb-sm">
+    <div class="text-center bg-primary q-pt-lg q-pb-sm">
       <p class="text-white"> &copy; 2022 | FMOcc: Fundamentos de programacion en internet</p>
     </div>
   </div>

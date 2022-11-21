@@ -8,7 +8,7 @@
         batch
 
         color="purple-8"
-        style="width: 425px; height: 270px;"
+        style="width: 325px; height: 270px;"
         accept=".jpg, .png, image/*"
         @rejected="onRejected"
       />

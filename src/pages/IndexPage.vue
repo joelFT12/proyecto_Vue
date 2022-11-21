@@ -92,7 +92,7 @@
               </q-card-section>
               <q-separator />
               <q-card-actions class="flex justify-end">
-                <q-btn outline color="primary">Detalles</q-btn>
+                <q-btn outline color="primary" to="compra/ertb">Detalles</q-btn>
               </q-card-actions>
             </q-card>
           </div>

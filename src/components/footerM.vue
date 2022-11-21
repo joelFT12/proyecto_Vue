@@ -29,7 +29,7 @@
               </p>
             </div>
             <!-- carnets -->
-            <div class="col-2">
+            <div class="col-5">
               <!-- Links -->
              <div class="q-mb-md"><label class="text-uppercase fw-bold mb-4">
               Carnets:
@@ -43,7 +43,7 @@
 
             </div>
             <!-- herramientas que usamos -->
-            <div class="col-4">
+            <!-- <div class="col-4">
               <div class="q-mb-md"><label class="text-uppercase ">
                 Tecnologias:
               </label></div>
@@ -51,12 +51,12 @@
               <p>Vue.js</p>
               <p>Quasar</p>
 
-            </div>
+            </div> -->
           </div>
         </div>
       </section>
       <!-- nombre de materia -->
-      <div class="text-center bg-purple-7 q-pt-lg q-pb-xl">
+      <div class="text-center bg-primary q-pt-lg q-pb-xl">
         <p class="text-white ulti">  &copy; 2022 | FMOcc: Fundamentos de programacion en internet</p>
 
       </div>

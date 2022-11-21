@@ -30,7 +30,7 @@
               <!-- contenedor 1 desktop-->
               <div class=" col-lg-6 col-md-6  col-sm-6 col-xs-12  bg-white text-black contenedor1">
 
-                <div class="col-12 mobile-hide">
+                <div class="col-12">
                   <!-- estado del movil -->
                   <div class="row items-center " style="margin-bottom:20px">
                     <label for="inputPantalla" class="col-lg-2 col-md-2  col-sm-2 col-xs-2">Estado: </label>

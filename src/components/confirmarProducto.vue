@@ -1,14 +1,14 @@
 <template>
-<div class="bg-white precios q-mb-xl " >
+<div class="bg-white precios q-mb-xl col-9" >
   <div class="q-gutter-y-sm ">
     <label class="" style="margin-top:-12px">Precio: </label>
-    <div class="col-5">
+    <div class="row justify-center">
       <q-form
       @submit="onSubmit"
       @reset="onReset"
     >
       <q-input
-      style="max-width: 200px;"
+      style="max-width: 300px;"
         dense
         color="purple-9"
         bg-color="white"
@@ -27,7 +27,7 @@
   </div>
 </div>
 
-  <div class="q-pa-md q-gutter-lg">
+  <div class="q-pa-sm q-gutter-lg">
     <q-btn
       class="iconos"
       dark-percentage
@@ -39,7 +39,8 @@
       icon="fa-solid fa-circle-xmark"
 
     />
-
+</div>
+<div class="q-pa-sm q-gutter-lg">
   <q-btn
       :loading="progress[1].loading"
       :percentage="progress[1].percentage"
