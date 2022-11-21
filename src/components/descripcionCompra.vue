@@ -8,13 +8,13 @@
           <h2 class="text-center descripcion">Descripción</h2>
           <!-- card de especificacion -->
           <div class="q-pa-md row flex justify-evenly q-gutter-md">
-            <q-card class="my-card col-12 col-md-4 ">
+            <q-card class="my-card col-lg-5 col-xs-12 col-12 col-md-4 ">
               <q-card-section>
                 {{ lorem }}
               </q-card-section>
             </q-card>
             <!-- card de descripcion -->
-            <q-card class="my-card col-lg-12 col-xs-12 col-md-4 ">
+            <q-card class="my-card col-lg-5 col-xs-12 col-md-4 ">
               <q-card-section>
                 {{ lorem }}
               </q-card-section>
