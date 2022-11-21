@@ -78,7 +78,7 @@
       <!-- Here -->
       <div class="col">
         <div class="row q-pr-xs q-mt-xs">
-          <div class="col-lg-3 col-md-4 col-xs-6 q-pa-xs q-mt-md" v-for="(item, key) in 5" :key="key">
+          <div class="col-lg-3 col-md-3 col-xs-6 q-pa-xs q-mt-md" v-for="(item, key) in 5" :key="key">
             <q-card class=" my-card" flat bordered>
               <img src="https://cdn.quasar.dev/img/parallax2.jpg">
 
