@@ -1,7 +1,7 @@
 <template>
   <div class="row">
-    <div class="espacio ">
-        <q-carousel class="tamanio rounded-borders shadow-3 col-xs-10 "  style="max-width: 600px;"
+    <div class="espacios ">
+        <q-carousel class="tamanios rounded-borders shadow-3"  style="max-width: 350px ; max-height:250px"
           animated
           v-model="slide"
           navigation
@@ -37,12 +37,12 @@ export default {
 </script>
 
 <style>
-.tamanio{
+.tamanios{
   width: 510px;
   height: 350px;
   padding: 0;
   }
-.espacio{
+.espacios{
   max-height: 350px;
 }
 

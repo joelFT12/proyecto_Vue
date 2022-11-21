@@ -3,13 +3,16 @@
   <q-page >
     <!-- {{$route.params.idCompra}} -->
     <div class="q-pa-md">
-      <div class="row justify-center">
+      <div class="row justify-evenly">
         <!-- componente del carrusel -->
-        <carruselImagen class="col-12 col-md-6 flex justify-center" >
-        </carruselImagen>
+        <div class="mobile-hide"> <carruselImagen class="col-lg-12 col-md-5 col-sm-6 col-xs-10 flex justify-center" >
+        </carruselImagen></div>
+
+        <!-- tamaño movil -->
+        <div  class="desktop-hide"><carruselMovil></carruselMovil></div>
 
         <!-- parte que solo se usa en esta pagina -->
-        <div class="col-12 col-md-6 q-pa flex content-center">
+        <div class="col-12 col-md-5 q-pa flex content-center q-mt-sm">
           <q-card class="shadow-0 ancho">
             <q-card-section>
               <!-- titulo -->
@@ -17,11 +20,12 @@
                 2Gb de Ram, Sólo Banda Tigo, Nuevo
               </p>
               <!-- precio -->
-              <p class="precio">$235.00</p>
+              <p class="precio mobile-hide">$235.00</p>
+              <p class="precio desktop-hide text-center">$235.00</p>
               <!-- boton comprar -->
-              <q-btn  class="boton" color="purple" label="Comprar" />
+              <q-btn  class="boton mobile-hide" color="purple" label="Comprar" />
               <!-- nombre del vendedor -->
-              <q-card class="info col-12 col-md-3 ">
+              <q-card class="info col-12">
                 <q-card-section>
                     <div class="flex justify-between content-center rounded-3  shadow-sm">
                       <p class="centro">Vendedor: Juan Perez</p>
@@ -40,6 +44,9 @@
       </div>
       </div>
   </q-page>
+  <div class="desktop-hide fixed-bottom">
+    <botonesFlotantes></botonesFlotantes>
+  </div>
 
 </template>
 
@@ -47,13 +54,19 @@
 import { defineComponent } from 'vue'
 import carruselImagen from 'components/CarruselImagen.vue'
 import descripcionCompra from 'components/descripcionCompra.vue'
+import carruselMovil from 'components/carruselMovil.vue'
+import botonesFlotantes from 'components/botonesFlotantes.vue'
+
 export default defineComponent({
   name: 'pruebaCompra',
 
   components: {
 
     carruselImagen,
-    descripcionCompra
+    descripcionCompra,
+    carruselMovil,
+    botonesFlotantes
+
   }
 })
 

@@ -1,13 +1,14 @@
 <template>
-<div class="bg-white precio q-mb-xl " >
+<div class="bg-white precios q-mb-xl " >
   <div class="q-gutter-y-sm ">
-    <label class="col-lg-2 col-md-2 col-sm-2 col-xs-3" style="margin-top:-12px">Precio: </label>
+    <label class="" style="margin-top:-12px">Precio: </label>
     <div class="col-5">
       <q-form
       @submit="onSubmit"
       @reset="onReset"
     >
       <q-input
+      style="max-width: 200px;"
         dense
         color="purple-9"
         bg-color="white"
@@ -42,6 +43,7 @@
   <q-btn
       :loading="progress[1].loading"
       :percentage="progress[1].percentage"
+      class="iconos"
       dark-percentage
       unelevated
       color="white"
@@ -102,8 +104,12 @@ export default {
 </script>
 
 <style>
-.precio{
+.precios{
   border-radius: .5em;
   padding: 1.5em;
   }
+.iconos{
+  padding: 1em;
+  border-radius: .5em;
+}
 </style>

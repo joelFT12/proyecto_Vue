@@ -17,13 +17,13 @@
         <div class="gt-sm hidde"><modalAgregar></modalAgregar></div>
       </q-toolbar>
     </q-header>
-    <q-footer reveal elevated class="bg-primary text-white">
+    <!-- <q-footer reveal elevated class="bg-primary text-white">
       <q-toolbar>
         <q-space/>
           &copy; 2022 FMOcc: | Fundamentos de programacion en internet
         <q-space/>
       </q-toolbar>
-    </q-footer>
+    </q-footer> -->
     <q-drawer v-model="leftDrawerOpen" class="bg-primary text-white">
       <q-list>
         <q-item-label  header class="text-white row justify-center">
@@ -40,13 +40,22 @@
     </q-page-container>
   </q-layout>
 
+  <!-- footer -->
+  <div class="mobile-hide">
+    <footerP></footerP>
+  </div>
+
+  <div class="desktop-hide">
+    <footerM></footerM>
+  </div>
 </template>
 
 <script>
 import { defineComponent, ref } from 'vue'
 import EssentialLink from 'components/EssentialLink.vue'
 import modalAgregar from 'components/modalAgregar.vue'
-
+import footerP from 'components/footerP.vue'
+import footerM from 'components/footerM.vue'
 const linksList = [
   {
     title: 'Inicio',
@@ -73,7 +82,9 @@ export default defineComponent({
 
   components: {
     EssentialLink,
-    modalAgregar
+    modalAgregar,
+    footerP,
+    footerM
   },
 
   setup () {

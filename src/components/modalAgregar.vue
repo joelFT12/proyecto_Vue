@@ -27,10 +27,10 @@
           <q-card-section class="q-pt-none">
             <div class="row justify-evenly ">
 
-              <!-- contenedor 1 -->
-              <div class="  col-lg-6 col-md-6  col-sm-6 col-xs-12  bg-white text-black contenedor1">
+              <!-- contenedor 1 desktop-->
+              <div class=" col-lg-6 col-md-6  col-sm-6 col-xs-12  bg-white text-black contenedor1">
 
-                <div class="col-12">
+                <div class="col-12 mobile-hide">
                   <!-- estado del movil -->
                   <div class="row items-center " style="margin-bottom:20px">
                     <label for="inputPantalla" class="col-lg-2 col-md-2  col-sm-2 col-xs-2">Estado: </label>
@@ -51,7 +51,7 @@
                   </div>
 
                   <!-- marca -->
-                  <div class="row items-center maar">
+                  <div class="row items-center maar ">
                     <label for="inputMarca" class="col-lg-2 col-md-2  col-sm-2 col-xs-2" style="margin-top:-12px">Marca: </label>
                     <div class="col-5">
                       <q-form
@@ -291,91 +291,6 @@
             </div>
              </div>
              </div>
-
-              <!-- <div class=" col-lg-6 col-sm-10 bg-purple-1 d-flex flex-column justify-content-around
-                  align-items-baseline bg-light rounded-2 px-4 py-4 mt-0 d-none d-lg-block text-black">
-
-                  <p class="fs-7">Imagenes: </p>
-                  <div class="row d-flex justify-content-around">
-                    <div class="col bg-light   col-10 col-sm-1 py-3 ps-1 mt-0 me-2 rounded-2 text-muted">
-                      <div class="col-lg-2 me-4">
-                        <button onclick="document.getElementById('getFile').click()"
-                      class="border-0 w-auto p-0 m-0 bg-danger ">
-                      <i class="bi bi-plus-circle-fill fs-1 text-secondary"></i>
-
-                    </button>
-                        <i class="bi bi-dash-circle-fill  fs-1 text-secondary" type="button"></i>
-                      </div>
-                    </div>
-
-                    <div class="col bg-light col-10 col-sm-4  ms-3 mt-0 py-3 rounded-2 text-muted">
-                      <table class="table table-borderless table-sm fs-7 text-muted">
-                        <thead>
-                          <tr>
-                            <th scope="col">N</th>
-                            <th scope="col">Tamaño</th>
-                            <th scope="col">Tipo</th>
-
-                          </tr>
-                        </thead>
-                        <tbody>
-                          <tr>
-                            <th scope="row">1</th>
-                            <td>145 kb</td>
-                            <td>jpg</td>
-
-                          </tr>
-                          <tr>
-                            <th scope="row">2</th>
-                            <td>145 kb</td>
-                            <td>png</td>
-
-                          </tr>
-                          <tr>
-                            <th scope="row">3</th>
-                            <td>145 kb</td>
-                            <td>png</td>
-                          </tr>
-
-                          <tr>
-                            <th scope="row">4</th>
-                            <td>145 kb</td>
-                            <td>jpg</td>
-                          </tr>
-                        </tbody>
-                      </table>
-                    </div>
-
-                    <div class="col bg-light col-10 col-sm-4 ms-0 py-3 px-0 mt-0  rounded-2 text-muted">
-                      <img src="https://www.mobilereviewnepal.com/wp-content/uploads/2022/09/iPhone-14-Pro-Max-Camera.jpg"
-                        class=" rounded float-end img-thumbnail " alt="..." width="200">
-                    </div>
-                  </div>
-
-              </div> -->
-
-              <!-- contenedor 4 -->
-              <!-- <div
-                class=" col-lg-4 col-sm-10 d-flex flex-column justify-content-baseline mb-4 rounded-2 px-4 py-4 mt-0 d-none d-lg-block text-white">
-                <div class="row justify-content-center mb-5 pt-0 mt-0">
-                  <div class="col bg-light col-12 col-sm-5  py-3 mt-0 rounded-2 text-muted ">
-                    <p>Precio:</p>
-                    <div class="row justify-content-center ">
-                      <div class="col-sm-8 pb-1 ">
-                        <input type="text" class="form-control " id="vendedor" placeholder="$000.00">
-                      </div>
-                    </div>
-                  </div>
-                </div>
-
-                <div class="modal-footer border-0  justify-content-center mt-5">
-                  <button type="button" class="btn btn-secondary text-light px-4 py-3 fs-5" data-bs-dismiss="modal">
-                    <i class="bi bi-x-circle-fill me-2"></i>Cancelar</button>
-                  <button type="button" class="btn btn-secondary text-light  px-4 py-3 fs-5" id="liveToastBtn2"
-                    data-bs-dismiss="modal">
-                    <i class="bi bi-bookmark-check-fill me-2"></i>Crear</button>
-                </div>
-              </div> -->
 
           </q-card-section>
         </q-card>

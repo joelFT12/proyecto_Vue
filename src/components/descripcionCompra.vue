@@ -1,7 +1,7 @@
 
 <template>
   <!-- la grid -->
-  <div class="q-pa-md">
+  <div class="q-pa-sm">
     <div class="row justify-center">
       <q-card class="shadow-0 ancho">
         <q-card-section>
@@ -14,7 +14,7 @@
               </q-card-section>
             </q-card>
             <!-- card de descripcion -->
-            <q-card class="my-card col-12 col-md-4 ">
+            <q-card class="my-card col-lg-12 col-xs-12 col-md-4 ">
               <q-card-section>
                 {{ lorem }}
               </q-card-section>
