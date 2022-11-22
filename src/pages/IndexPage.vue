@@ -3,28 +3,79 @@
     <div class="row">
       <q-scroll-area style="height: 100vh; max-width: 250px;"
         class="col bg-white q-pt-lg q-pl-sm q-pr-sm  gt-sm hidde q-mr-sm">
-
         <q-list bordered separator class="text-center">
           <span class="text-h6 text-primary">Marcas</span>
-          <q-item clickable v-ripple class="">
+          <q-item v-for="(marca, key) in marcas" :key="'mar-' + key" clickable v-ripple class="">
             <q-item-section>
-              <q-checkbox v-model="right" label="Samsung">
+              <q-checkbox v-model="marca.value">
+                {{ marca.label }}
                 <q-badge color="bg-primary q-ml-sm" align="top">
-                  23
+                  {{ marca.cantidad }}
                 </q-badge>
               </q-checkbox>
             </q-item-section>
           </q-item>
         </q-list>
+        <q-list bordered separator class="text-center q-mt-lg">
+          <span class="text-h6 text-primary">Marcas</span>
+          <q-item v-for="(sistema, key) in sistemas" :key="'sis-' + key" clickable v-ripple class="">
+            <q-item-section>
+              <q-checkbox v-model="sistema.value">
+                {{ sistema.label }}
+                <q-badge color="bg-primary q-ml-sm" align="top">
+                  {{ sistema.cantidad }}
+                </q-badge>
+              </q-checkbox>
+            </q-item-section>
+          </q-item>
+        </q-list>
+
+        <q-list bordered separator class="text-center q-mt-lg">
+          <span class="text-h6 text-primary">Marcas</span>
+          <q-item v-for="(pantalla, key) in pantallas" :key="'pan-' + key" clickable v-ripple class="">
+            <q-item-section>
+              <q-checkbox v-model="pantalla.value">
+                {{ pantalla.label }}
+                <q-badge color="bg-primary q-ml-sm" align="top">
+                  {{ pantalla.cantidad }}
+                </q-badge>
+              </q-checkbox>
+            </q-item-section>
+          </q-item>
+        </q-list>
+
       </q-scroll-area>
       <!-- Here -->
       <div class="col ">
         <div class="row q-mt-md flex  justify-center items-center ">
           <div class="col-lg-2 q-mr-lg lt-md hidde">
-            <q-select outlined v-model="sortBy" :options="sortOption" color="primary" @update:model-value="sortSelect"/>
+            <q-select outlined v-model="sortBy" :options="sortOption" color="primary"
+              @update:model-value="sortSelect" />
           </div>
           <div class="col-lg-5 gt-sm hidde">
             <div class=" flex justify-center items-center">
+              <div>
+                <q-btn @click="filtrarPrecio" square color="primary" icon="delete" class="q-mr-lg"/>
+              </div>
+              <div class="q-mr-md">
+                <q-input label="Desde:" v-model.number="desde" type="number" rounded standout="bg-primary text-white"
+                  dense color="white" style="max-width: 120px;">
+                  <template v-slot:prepend>
+                    <q-icon name="attach_money" />
+                  </template>
+                </q-input>
+              </div>
+              <div class="q-mr-md">
+                <q-input label="Hasta:" v-model.number="hasta" type="number" rounded standout="bg-primary text-white"
+                  dense color="white" style="max-width: 120px;">
+                  <template v-slot:prepend>
+                    <q-icon name="attach_money" />
+                  </template>
+                </q-input>
+              </div>
+              <div>
+                <q-btn @click="filtrarPrecio" round color="primary" icon="search" class="q-mr-lg" />
+              </div>
               <label for="" class="q-pr-md">ordenar por:</label>
               <q-btn-toggle v-model="sortBy" class="my-custom-toggle" no-caps rounded unelevated toggle-color="primary"
                 color="white" text-color="primary" :options="sortOption" @click="sortCards" />
@@ -66,13 +117,34 @@ const articulosOriginales = [
   { id: '006', precio: 67.25, titulo: 'Samsung J6, Pantalla de 5.5 64GB, 2GB Ram, Color Negro', vendedor: 'juan perez', telefono: '806045-3456', fecha: '2013-07-30' },
   { id: '007', precio: 36.02, titulo: 'Samsung J6, Pantalla de 5.5 64GB, 2GB Ram, Color Negro', vendedor: 'juan perez', telefono: '806045-3456', fecha: '2013-08-30' }
 ]
-
 const articulos = ref([])
 const sortBy = ref('PRECIO')
 const sortOption = ref([
   { label: 'PRECIO', value: 'PRECIO' },
   { label: 'FECHA', value: 'FECHA' }
 ])
+
+const sistemas = ref([
+  { value: false, label: 'Android', cantidad: 25 },
+  { value: false, label: 'IOS', cantidad: 18 },
+  { value: false, label: 'Windows', cantidad: 3 }
+])
+
+const marcas = ref([
+  { value: false, label: 'Samsung', cantidad: 25 },
+  { value: false, label: 'Huawei', cantidad: 18 },
+  { value: false, label: 'Nokia', cantidad: 3 },
+  { value: false, label: 'Iphone', cantidad: 3 },
+  { value: false, label: 'Xiaomi', cantidad: 3 }
+])
+const pantallas = ref([
+  { value: false, label: '6.0', cantidad: 25 },
+  { value: false, label: '5.5', cantidad: 18 },
+  { value: false, label: '5', cantidad: 3 }
+])
+
+const desde = ref(0)
+const hasta = ref(0)
 
 function sortCards () {
   console.log(sortBy.value)
@@ -96,6 +168,18 @@ function sortCards () {
 function sortSelect (value) {
   sortBy.value = value.value
   sortCards()
+}
+
+function filtrarPrecio () {
+  if (desde.value > 0 && hasta.value > 0) {
+    articulos.value = articulos.value.filter((item) => {
+      if (item.precio >= desde.value && item.precio <= hasta.value) {
+        return true
+      } else {
+        return false
+      }
+    })
+  }
 }
 
 onMounted(() => {
