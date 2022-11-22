@@ -4,7 +4,7 @@
       <q-toolbar>
         <q-btn class="lt-md hidde" flat dense round icon="fa-solid fa-bars" aria-label="Menu" @click="toggleLeftDrawer" />
 
-        <q-toolbar-title class="mobile-hide">
+        <q-toolbar-title class="gt-sm hidde">
           <i class="fa-solid fa-bullhorn"></i>
           Tienda CellPhone
         </q-toolbar-title>

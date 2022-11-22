@@ -1,11 +1,5 @@
 <template>
   <q-page style="background-color: #F2F2F2;" class="">
-    <!-- <img
-      alt="Quasar logo"
-      src="~assets/quasar-logo-vertical.svg"
-      style="width: 200px; height: 200px"
-    > -->
-
     <div class="row">
       <q-scroll-area style="height: 100vh; max-width: 250px;"
         class="col bg-white q-pt-lg q-pl-sm q-pr-sm  gt-sm hidde q-mr-sm">
@@ -21,69 +15,29 @@
               </q-checkbox>
             </q-item-section>
           </q-item>
-          <q-item clickable v-ripple class="">
-            <q-item-section>
-              <q-checkbox v-model="right" label="Huawei" />
-            </q-item-section>
-          </q-item>
-          <q-item clickable v-ripple class="">
-            <q-item-section>
-              <q-checkbox v-model="right" label="Nokia" />
-            </q-item-section>
-          </q-item>
-          <q-item clickable v-ripple class="">
-            <q-item-section>
-              <q-checkbox v-model="right" label="Xiaomi" />
-            </q-item-section>
-          </q-item>
         </q-list>
-        <q-list bordered separator class="q-mt-lg text-center">
-          <span class="text-h6 text-primary">Sistema</span>
-          <q-item clickable v-ripple class="">
-            <q-item-section>
-              <q-checkbox v-model="right" label="Android" />
-            </q-item-section>
-          </q-item>
-          <q-item clickable v-ripple class="">
-            <q-item-section>
-              <q-checkbox v-model="right" label="Windows" />
-            </q-item-section>
-          </q-item>
-          <q-item clickable v-ripple class="">
-            <q-item-section>
-              <q-checkbox v-model="right" label="ios" />
-            </q-item-section>
-          </q-item>
-        </q-list>
-        <q-list bordered separator class="q-mt-lg text-center">
-          <span class="text-h6 text-primary">Pantalla</span>
-          <q-item clickable v-ripple class="">
-            <q-item-section>
-              <q-checkbox v-model="right" label="Android" />
-            </q-item-section>
-          </q-item>
-          <q-item clickable v-ripple class="">
-            <q-item-section>
-              <q-checkbox v-model="right" label="Windows" />
-            </q-item-section>
-          </q-item>
-          <q-item clickable v-ripple class="">
-            <q-item-section>
-              <q-checkbox v-model="right" label="ios" />
-            </q-item-section>
-          </q-item>
-        </q-list>
-
       </q-scroll-area>
       <!-- Here -->
-      <div class="col">
+      <div class="col ">
+        <div class="row q-mt-md flex  justify-center items-center ">
+          <div class="col-lg-2 q-mr-lg lt-md hidde">
+            <q-select outlined  v-model="sortBy" :options="sortOption" color="primary"/>
+          </div>
+          <div class="col-lg-5 gt-sm hidde">
+            <div class=" flex justify-center items-center">
+              <label for="" class="q-pr-md">ordenar por:</label>
+              <q-btn-toggle v-model="sortBy" class="my-custom-toggle" no-caps rounded unelevated toggle-color="primary"
+                color="white" text-color="primary" :options="sortOption" />
+            </div>
+          </div>
+        </div>
         <div class="row q-pr-xs q-mt-xs">
-          <div class="col-lg-3 col-md-3 col-xs-6 q-pa-xs q-mt-md" v-for="(item, key) in 5" :key="key">
+          <div class="col-lg-3 col-md-3 col-xs-6 q-pa-xs q-mt-md" v-for="(item, key) in articulos" :key="key">
             <q-card class=" my-card" flat bordered>
               <img src="https://cdn.quasar.dev/img/parallax2.jpg">
 
               <q-card-section>
-                <div class="text-h6">$132.00</div>
+                <div class="text-h6">${{ item.precio }}</div>
               </q-card-section>
 
               <q-card-section class="q-pt-none text-justify">
@@ -99,14 +53,30 @@
         </div>
       </div>
     </div>
-
   </q-page>
 </template>
+<script setup>
+import { onMounted, ref } from 'vue'
+const articulosOriginales = [
+  { id: '001', precio: 24.25, titulo: 'Samsung J6, Pantalla de 5.5 64GB, 2GB Ram, Color Negro', vendedor: 'juan perez', telefono: '806045-3456', fecha: '2022-10-05' },
+  { id: '002', precio: 60.05, titulo: 'Samsung J6, Pantalla de 5.5 64GB, 2GB Ram, Color Negro', vendedor: 'juan perez', telefono: '806045-3456', fecha: '2022-10-05' },
+  { id: '003', precio: 46.32, titulo: 'Samsung J6, Pantalla de 5.5 64GB, 2GB Ram, Color Negro', vendedor: 'juan perez', telefono: '806045-3456', fecha: '2022-10-05' },
+  { id: '004', precio: 10.89, titulo: 'Samsung J6, Pantalla de 5.5 64GB, 2GB Ram, Color Negro', vendedor: 'juan perez', telefono: '806045-3456', fecha: '2022-10-05' },
+  { id: '005', precio: 67.66, titulo: 'Samsung J6, Pantalla de 5.5 64GB, 2GB Ram, Color Negro', vendedor: 'juan perez', telefono: '806045-3456', fecha: '2022-10-05' },
+  { id: '006', precio: 67.25, titulo: 'Samsung J6, Pantalla de 5.5 64GB, 2GB Ram, Color Negro', vendedor: 'juan perez', telefono: '806045-3456', fecha: '2022-10-05' },
+  { id: '007', precio: 36.02, titulo: 'Samsung J6, Pantalla de 5.5 64GB, 2GB Ram, Color Negro', vendedor: 'juan perez', telefono: '806045-3456', fecha: '2022-10-05' }
+]
 
-<script>
-import { defineComponent } from 'vue'
-
-export default defineComponent({
-  name: 'IndexPage'
+const articulos = ref([])
+const sortBy = ref('PRECIO')
+const sortOption = ref([
+  { label: 'PRECIO', value: 'PRECIO' },
+  { label: 'FECHA', value: 'FECHA' }
+])
+onMounted(() => {
+  articulosOriginales.forEach(item => {
+    articulos.value.push(item)
+  })
 })
+
 </script>
