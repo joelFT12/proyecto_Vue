@@ -40,7 +40,7 @@
                       @reset.prevent.stop="onReset"
                     >
                       <q-option-group
-                        v-model="group"
+                        v-model="datos.group"
                         :options="options"
                         color="primary"
                         ref="estadoB"
@@ -55,21 +55,26 @@
                   <div class="row items-center maar ">
                     <label for="inputMarca" class="col-lg-2 col-md-2  col-sm-2 col-xs-2" style="margin-top:-12px">Marca: </label>
                     <div class="col-5">
-                      <q-form
-                      @submit.prevent.stop="onSubmit"
-                      @reset.prevent.stop="onReset"
-                    >
-                      <q-input
+                    <div class="q-gutter-y-md column">
+
+                      <!-- equivalent -->
+                      <q-form @reset.prevent.stop="onReset" @submit.prevent.stop="onSubmit">
+                        <q-select
                         color="purple-9"
-                        ref="marcaB"
-                        dense
                         filled
-                        v-model="marca"
+                        dense
+                        v-model="datos.marca"
+
+                        :options="marcas"
                         label="Marca"
-                        lazy-rules
-                        :rules="[ val => val && val.length > 0 || 'Por favor completar']"
-                      />
-                    </q-form>
+                        style="margin-bottom: 1em;"
+                        clearable
+                        ref="marcaB"
+                        >
+                        </q-select>
+                      </q-form>
+
+                    </div>
                     </div>
                   </div>
                   <!-- modelo -->
@@ -86,7 +91,7 @@
                         ref="modeloB"
                         filled
                         type="text"
-                        v-model="modelo"
+                        v-model="datos.modelo"
                         label="Modelo"
                         lazy-rules
                         :rules="[ val => val && val.length > 0 || 'Por favor completar']"
@@ -96,25 +101,27 @@
                   </div>
                   <!-- pantalla -->
                   <div class="row items-center maar">
-                    <label for="inputMarca" class="col-lg-2 col-md-2  col-sm-2 col-xs-2" style="margin-top:-12px">Pantalla: </label>
+                    <label for="inputMarca" class="col-lg-2 col-md-2  col-sm-2 col-xs-2" style="margin-top:-12px" >Pantalla: </label>
                     <div class="col-4 ">
-                      <q-form
-                      @submit.prevent.stop="onSubmit"
-                      @reset.prevent.stop="onReset"
-                    >
-                      <q-input
-                        color="purple-9"
-                        dense
-                        ref="pantallaB"
-                        type="number"
-                        filled
-                        v-model="pantalla"
-                        label="Pantalla"
-                        lazy-rules
-                        :rules="[val => val !== null && val !== '' || 'Escribe un numero',
-                                val => val > 0 && val < 100 || 'Ingresa otro numero']"
-                      />
-                    </q-form>
+                      <div class="q-gutter-y-md column">
+
+                        <!-- equivalent -->
+                        <q-form @reset.prevent.stop="onReset" @submit.prevent.stop="onSubmit">
+                          <q-select
+                          style="margin-bottom: 1em;"
+                          color="purple-9"
+                          filled
+                          dense
+                          v-model="datos.pantalla"
+                          :options="pantallas"
+                          label="Tamaño de pantalla"
+                          ref="pantallaB"
+                          clearable
+                          >
+                          </q-select>
+                        </q-form>
+
+                      </div>
 
                     </div>
                     <span style="margin:-12px 0 0 10px">Pulgadas </span>
@@ -133,7 +140,7 @@
                         color="purple-9"
                         filled
                         dense
-                        v-model="model"
+                        v-model="datos.model"
 
                         :options="optiones"
                         label="Sistema"
@@ -161,7 +168,7 @@
                         color="purple-9"
                         type="number"
                         filled
-                        v-model="rom"
+                        v-model="datos.rom"
                         label="ROM "
                         lazy-rules
                         :rules="[val => val !== null && val !== '' || 'Escribe un numero',
@@ -187,7 +194,7 @@
                         color="purple-9"
                         type="number"
                         filled
-                        v-model="ram"
+                        v-model="datos.ram"
                         label="RAM"
                         lazy-rules
                         :rules="[val => val !== null && val !== '' || 'Escribe un numero',
@@ -219,7 +226,7 @@
                       bg-color="white"
                       filled
                       type="text"
-                      v-model="titulo"
+                      v-model="datos.titulo"
                       label="Escribe un titulo para el anuncio"
                       lazy-rules
                       :rules="[ val => val && val.length > 0 || '']"
@@ -242,7 +249,7 @@
                       dense
                       filled
                       type="text"
-                      v-model="vendedor"
+                      v-model="datos.vendedor"
                       label="Vendedor"
                       lazy-rules
                       :rules="[ val => val && val.length > 0 || '']"
@@ -265,7 +272,7 @@
                       bg-color="white"
                       type="tel"
                       filled
-                      v-model="telefono"
+                      v-model="datos.telefono"
                       label="Telefono"
                       lazy-rules
                       :rules="[val => val !== null && val !== '' || ' ',
@@ -291,7 +298,7 @@
                       dense
                       filled
                       type="textarea"
-                      v-model="des"
+                      v-model="datos.des"
                       label="Descripcion del articulo"
                       lazy-rules
                       :rules="[ val => val && val.length > 0 || '']"
@@ -315,7 +322,7 @@
                     label="Elige tus imagenes"
                     multiple
                     batch
-                    v-model="imagen"
+
                     color="purple-8"
                     style="width: 325px; height: 270px;"
                     accept=".jpg, .png, image/*"
@@ -347,7 +354,7 @@
                         bg-color="white"
                         type="tel"
                         filled
-                        v-model="precio"
+                        v-model="datos.precio"
                         label="Precio"
                         lazy-rules
                         :rules="[val => val !== null && val !== '' || 'Escribe un numero',
@@ -366,7 +373,7 @@
                   unelevated
                   color="white"
                   text-color="purple-9"
-                  @click="onReset"
+                  @click="borrarDatos"
                   label="Cancelar"
                   type="reset"
                   icon="fa-solid fa-circle-xmark"
@@ -375,8 +382,7 @@
             </div>
             <div class="q-pa-sm q-gutter-lg">
               <q-btn
-                :loading="progress[1].loading"
-                :percentage="progress[1].percentage"
+
                   class="iconos"
                   dark-percentage
                   unelevated
@@ -402,80 +408,112 @@
 
 <script>
 import { useQuasar } from 'quasar'
-import { ref, onBeforeUnmount } from 'vue'
-// import sistemaOpt from 'components/sistemaOpt.vue'
-// import agregarFotos from 'components/agregarFotos.vue'
+import { ref } from 'vue'
 
+const datos = ref({
+  marca: null,
+  modelo: null,
+  pantalla: null,
+  rom: null,
+  ram: null,
+  titulo: null,
+  vendedor: null,
+  telefono: null,
+  des: null,
+  group: null,
+  model: null,
+  imagen: null,
+  precio: null
+})
+
+// const accept = ref(false)
+const precioB = ref(null)
+const tituloB = ref(null)
+const vendedorB = ref(null)
+const telefonoB = ref(null)
+const desB = ref(null)
+const marcaB = ref(null)
+const modeloB = ref(null)
+const pantallaB = ref(null)
+const romB = ref(null)
+const ramB = ref(null)
+
+const borrarDatos = function () {
+  // marca.value = null
+  // modelo.value = null
+  // pantalla.value = null
+  // rom.value = null
+  // ram.value = null
+  // titulo.value = null
+  // vendedor.value = null
+  // telefono.value = null
+  // des.value = null
+  // precio.value = null
+  // accept.value = false
+  // model.value = null
+  // group.value = null
+  // imagen.value = null
+  // datos.value = null
+  precioB.value.resetValidation()
+  tituloB.value.resetValidation()
+  vendedorB.value.resetValidation()
+  telefonoB.value.resetValidation()
+  desB.value.resetValidation()
+  marcaB.value.resetValidation()
+  modeloB.value.resetValidation()
+  pantallaB.value.resetValidation()
+  romB.value.resetValidation()
+  ramB.value.resetValidation()
+}
+
+const guardarDatos = function () {
+  console.log('datos.value')
+  precioB.value.validate()
+  desB.value.validate()
+  romB.value.validate()
+  ramB.value.validate()
+  pantallaB.value.validate()
+  modeloB.value.validate()
+  marcaB.value.validate()
+  telefonoB.value.validate()
+  tituloB.value.validate()
+  vendedorB.value.validate()
+  if (!precioB.value.hasError && !desB.value.hasError && !ramB.value.hasError && !romB.value.hasError && !pantallaB.value.hasError && !modeloB.value.hasError && !marcaB.value.hasError && !telefonoB.value.hasError && !tituloB.value.hasError && !vendedorB.value.hasError) {
+    console.log(datos.value)
+  }
+}
 export default {
-  components: {
-    // sistemaOpt,
-    // agregarFotos
-  },
+
   setup () {
     const $q = useQuasar()
-    const model = ref(null)
-    const group = ref(null)
-    const marca = ref(null)
-    const modelo = ref(null)
-    const pantalla = ref(null)
-    const rom = ref(null)
-    const ram = ref(null)
+
     const accept = ref(false)
-    const titulo = ref(null)
-    const vendedor = ref(null)
-    const telefono = ref(null)
-    const des = ref(null)
-    const precio = ref(null)
-    const imagen = ref(null)
 
-    const precioB = ref(null)
-    const tituloB = ref(null)
-    const vendedorB = ref(null)
-    const telefonoB = ref(null)
-    const desB = ref(null)
-    const marcaB = ref(null)
-    const modeloB = ref(null)
-    const pantallaB = ref(null)
-    const romB = ref(null)
-    const ramB = ref(null)
+    // const progress = ref([
+    //   { loading: false, percentage: 0 },
+    //   { loading: false, percentage: 0 },
+    //   { loading: false, percentage: 0 }
+    // ])
 
-    const progress = ref([
-      { loading: false, percentage: 0 },
-      { loading: false, percentage: 0 },
-      { loading: false, percentage: 0 }
-    ])
+    // const intervals = [null, null, null]
+    // function startComputing (id) {
+    //   progress.value[id].loading = true
+    //   progress.value[id].percentage = 0
 
-    const intervals = [null, null, null]
-    function startComputing (id) {
-      progress.value[id].loading = true
-      progress.value[id].percentage = 0
+    //   intervals[id] = setInterval(() => {
+    //     progress.value[id].percentage += Math.floor(Math.random() * 8 + 10)
+    //     if (progress.value[id].percentage >= 100) {
+    //       clearInterval(intervals[id])
+    //       progress.value[id].loading = false
+    //     }
+    //   }, 700)
+    // }
 
-      intervals[id] = setInterval(() => {
-        progress.value[id].percentage += Math.floor(Math.random() * 8 + 10)
-        if (progress.value[id].percentage >= 100) {
-          clearInterval(intervals[id])
-          progress.value[id].loading = false
-        }
-      }, 700)
-    }
-
-    onBeforeUnmount(() => {
-      intervals.forEach(val => {
-        clearInterval(val)
-      })
-    })
-
-    //  const datos = {
-    //    marca: marca.value,
-    //    modelo: modelo.value,
-    //    pantalla: pantalla.value,
-    //    rom: rom.value,
-    //    ram: ram.value,
-    //    titulo: titulo.value,
-    //    vendedor: vendedor.value,
-    //   telefono: telefono.value,
-    //    des: des.value
-    //  }
+    // onBeforeUnmount(() => {
+    //   intervals.forEach(val => {
+    //     clearInterval(val)
+    //   })
+    // })
 
     function onRejected (rejectedEntries) {
       $q.notify({
@@ -484,31 +522,22 @@ export default {
       })
     }
 
-    const guardarDatos = function () {
-      console.log('nuevo.value')
-    }
+    // const guardarDatos = function () {
+    //   console.log('nuevo.value')
+    // }
 
     return {
       guardarDatos,
+      borrarDatos,
       onRejected,
-      imagen,
-      progress,
-      startComputing,
+      datos,
+      // imagen,
+      // progress,
+      // startComputing,
       dialog: ref(false),
       maximizedToggle: ref(true),
-      marca,
-      modelo,
-      pantalla,
-      rom,
-      ram,
-      titulo,
-      vendedor,
-      telefono,
-      des,
-      // datos,
-      accept,
-      precio,
 
+      accept,
       precioB,
       tituloB,
       vendedorB,
@@ -519,8 +548,6 @@ export default {
       pantallaB,
       romB,
       ramB,
-      group,
-      model,
 
       color: ref('purple-9'),
 
@@ -538,35 +565,36 @@ export default {
         'Android', 'Ios', 'Windows'
       ],
 
+      marcas: [
+        'Samsung', 'Iphone', 'Motorola', 'Xiaomi', 'Otra marca'
+      ],
+
+      pantallas: [
+        '5,5', '6,0', '6,5', 'Otra medida'
+      ],
+
       onSubmit () {
 
-      },
-      onReset () {
-        marca.value = null
-        modelo.value = null
-        pantalla.value = null
-        rom.value = null
-        ram.value = null
-        titulo.value = null
-        vendedor.value = null
-        telefono.value = null
-        des.value = null
-        precio.value = null
-        accept.value = false
-        model.value = null
-        group.value = null
-        imagen.value = null
-        precioB.value.resetValidation()
-        tituloB.value.resetValidation()
-        vendedorB.value.resetValidation()
-        telefonoB.value.resetValidation()
-        desB.value.resetValidation()
-        marcaB.value.resetValidation()
-        modeloB.value.resetValidation()
-        pantallaB.value.resetValidation()
-        romB.value.resetValidation()
-        ramB.value.resetValidation()
       }
+
+      // onReset () {
+      // marca.value = null
+      // modelo.value = null
+      // pantalla.value = null
+      // rom.value = null
+      // ram.value = null
+      // titulo.value = null
+      // vendedor.value = null
+      // telefono.value = null
+      // des.value = null
+      // precio.value = null
+      // accept.value = false
+      // model.value = null
+      // group.value = null
+      // imagen.value = null
+      //   datos.value = null
+
+      // }
 
     }
   }

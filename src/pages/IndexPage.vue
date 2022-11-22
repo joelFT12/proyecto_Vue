@@ -34,7 +34,7 @@
         <div class="row q-pr-xs q-mt-xs">
           <div class="col-lg-3 col-md-3 col-xs-6 q-pa-xs q-mt-md" v-for="(item, key) in articulos" :key="key">
             <q-card class=" my-card" flat bordered>
-              <img src="https://cdn.quasar.dev/img/parallax2.jpg">
+              <q-img src="https://cdn.quasar.dev/img/parallax2.jpg"></q-img>
 
               <q-card-section>
                 <div class="text-h6">${{ item.precio }}</div>
