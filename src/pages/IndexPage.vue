@@ -55,7 +55,7 @@
           <div class="col-lg-5 gt-sm hidde">
             <div class=" flex justify-center items-center">
               <div>
-                <q-btn @click="filtrarPrecio" square color="primary" icon="delete" class="q-mr-lg"/>
+                <q-btn @click="cargarDatosOriginales" v-show="hayFiltro" square color="primary" icon="delete" class="q-mr-lg"/>
               </div>
               <div class="q-mr-md">
                 <q-input label="Desde:" v-model.number="desde" type="number" rounded standout="bg-primary text-white"
@@ -145,9 +145,9 @@ const pantallas = ref([
 
 const desde = ref(0)
 const hasta = ref(0)
+const hayFiltro = ref(false)
 
 function sortCards () {
-  console.log(sortBy.value)
   if (sortBy.value === 'PRECIO') {
     articulos.value.sort((a, b) => a.precio - b.precio)
   }
@@ -172,6 +172,7 @@ function sortSelect (value) {
 
 function filtrarPrecio () {
   if (desde.value > 0 && hasta.value > 0) {
+    hayFiltro.value = true
     articulos.value = articulos.value.filter((item) => {
       if (item.precio >= desde.value && item.precio <= hasta.value) {
         return true
@@ -182,10 +183,18 @@ function filtrarPrecio () {
   }
 }
 
-onMounted(() => {
+function cargarDatosOriginales () {
+  desde.value = 0
+  hasta.value = 0
+  hayFiltro.value = false
+  articulos.value = []
   articulosOriginales.forEach(item => {
     articulos.value.push(item)
   })
+}
+
+onMounted(() => {
+  cargarDatosOriginales()
   sortCards()
 })
 
