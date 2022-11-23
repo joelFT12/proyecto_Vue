@@ -318,7 +318,7 @@
                     <!-- <agregarFotos ></agregarFotos> -->
                     <div>
                     <q-uploader
-                    url="http://localhost:4444/upload"
+                    url="gs://ebaycellphone-a2b19.appspot.com"
                     label="Elige tus imagenes"
                     multiple
                     batch
@@ -409,6 +409,9 @@
 <script>
 import { useQuasar } from 'quasar'
 import { ref } from 'vue'
+import { db } from 'boot/database'
+import { collection, addDoc } from 'firebase/firestore'
+import { useRouter } from 'vue-router'
 
 const datos = ref({
   marca: null,
@@ -437,106 +440,102 @@ const modeloB = ref(null)
 const pantallaB = ref(null)
 const romB = ref(null)
 const ramB = ref(null)
+const idMovil = ref('')
+let myTimeout = (null)
 
-const borrarDatos = function () {
-  // marca.value = null
-  // modelo.value = null
-  // pantalla.value = null
-  // rom.value = null
-  // ram.value = null
-  // titulo.value = null
-  // vendedor.value = null
-  // telefono.value = null
-  // des.value = null
-  // precio.value = null
-  // accept.value = false
-  // model.value = null
-  // group.value = null
-  // imagen.value = null
-  // datos.value = null
-  precioB.value.resetValidation()
-  tituloB.value.resetValidation()
-  vendedorB.value.resetValidation()
-  telefonoB.value.resetValidation()
-  desB.value.resetValidation()
-  marcaB.value.resetValidation()
-  modeloB.value.resetValidation()
-  pantallaB.value.resetValidation()
-  romB.value.resetValidation()
-  ramB.value.resetValidation()
-}
-
-const guardarDatos = function () {
-  console.log('datos.value')
-  precioB.value.validate()
-  desB.value.validate()
-  romB.value.validate()
-  ramB.value.validate()
-  pantallaB.value.validate()
-  modeloB.value.validate()
-  marcaB.value.validate()
-  telefonoB.value.validate()
-  tituloB.value.validate()
-  vendedorB.value.validate()
-  if (!precioB.value.hasError && !desB.value.hasError && !ramB.value.hasError && !romB.value.hasError && !pantallaB.value.hasError && !modeloB.value.hasError && !marcaB.value.hasError && !telefonoB.value.hasError && !tituloB.value.hasError && !vendedorB.value.hasError) {
-    console.log(datos.value)
-  }
-}
+// const cargarDatos = async function () {
+//   const querySnapshot = await getDocs(collection(db, 'users'))
+//   querySnapshot.forEach((doc) => {
+//     console.log(`${doc.id} => ${doc.data()}`)
+//   })
+// }
 export default {
 
   setup () {
     const $q = useQuasar()
-
+    const inicio = function () {
+      reloj()
+    }
+    const router = useRouter()
     const accept = ref(false)
 
-    // const progress = ref([
-    //   { loading: false, percentage: 0 },
-    //   { loading: false, percentage: 0 },
-    //   { loading: false, percentage: 0 }
-    // ])
-
-    // const intervals = [null, null, null]
-    // function startComputing (id) {
-    //   progress.value[id].loading = true
-    //   progress.value[id].percentage = 0
-
-    //   intervals[id] = setInterval(() => {
-    //     progress.value[id].percentage += Math.floor(Math.random() * 8 + 10)
-    //     if (progress.value[id].percentage >= 100) {
-    //       clearInterval(intervals[id])
-    //       progress.value[id].loading = false
-    //     }
-    //   }, 700)
-    // }
-
-    // onBeforeUnmount(() => {
-    //   intervals.forEach(val => {
-    //     clearInterval(val)
-    //   })
-    // })
-
-    function onRejected (rejectedEntries) {
+    // subir imagen
+    const subirImagen = function () {
+      console.log('subirimagenes')
       $q.notify({
-        type: 'negative',
-        message: `${rejectedEntries.length} file(s) did not pass validation constraints`
+        message: 'Se guardo la informacion',
+        color: 'green'
       })
+      router.push('../')
+      myTimeout = setTimeout(inicio, 1000)
     }
 
-    // const guardarDatos = function () {
-    //   console.log('nuevo.value')
-    // }
+    const reloj = function () {
+      window.location.reload()
+    }
+
+    // elimino campos y validacion
+    const borrarDatos = function () {
+      datos.value = ''
+      precioB.value.resetValidation()
+      tituloB.value.resetValidation()
+      vendedorB.value.resetValidation()
+      telefonoB.value.resetValidation()
+      desB.value.resetValidation()
+      marcaB.value.resetValidation()
+      modeloB.value.resetValidation()
+      pantallaB.value.resetValidation()
+      romB.value.resetValidation()
+      ramB.value.resetValidation()
+      myTimeout = setTimeout(inicio, 500)
+      $q.notify({
+        message: 'No se guardo la informacion',
+        color: 'red'
+      })
+    }
+    // valido y guardo datos
+    const guardarDatos = function () {
+      console.log('datos.value')
+      precioB.value.validate()
+      desB.value.validate()
+      romB.value.validate()
+      ramB.value.validate()
+      pantallaB.value.validate()
+      modeloB.value.validate()
+      marcaB.value.validate()
+      telefonoB.value.validate()
+      tituloB.value.validate()
+      vendedorB.value.validate()
+      if (!precioB.value.hasError && !desB.value.hasError && !ramB.value.hasError && !romB.value.hasError && !pantallaB.value.hasError && !modeloB.value.hasError && !marcaB.value.hasError && !telefonoB.value.hasError && !tituloB.value.hasError && !vendedorB.value.hasError) {
+        console.log(datos.value)
+
+        subirDatos()
+      }
+    }
+    // subo datos a la BD
+    const subirDatos = async function () {
+      try {
+        const docRef = await addDoc(collection(db, 'articulos'), datos.value)
+        console.log('Document written with ID: ', docRef.id)
+        idMovil.value = docRef.id
+        subirImagen()
+      } catch (e) {
+        console.error('Error al subir los articulos: ', e)
+      }
+    }
 
     return {
       guardarDatos,
       borrarDatos,
-      onRejected,
+      subirImagen,
+      subirDatos,
       datos,
-      // imagen,
-      // progress,
-      // startComputing,
+      db,
+      router,
+      myTimeout,
+      inicio,
       dialog: ref(false),
       maximizedToggle: ref(true),
-
       accept,
       precioB,
       tituloB,
@@ -550,17 +549,17 @@ export default {
       ramB,
 
       color: ref('purple-9'),
-
       options: [
         {
           label: 'Nuevo',
-          value: 'op1'
+          value: 'Nuevo'
         },
         {
           label: 'Usado',
-          value: 'op2'
+          value: 'Usado'
         }
       ],
+
       optiones: [
         'Android', 'Ios', 'Windows'
       ],
@@ -571,30 +570,7 @@ export default {
 
       pantallas: [
         '5,5', '6,0', '6,5', 'Otra medida'
-      ],
-
-      onSubmit () {
-
-      }
-
-      // onReset () {
-      // marca.value = null
-      // modelo.value = null
-      // pantalla.value = null
-      // rom.value = null
-      // ram.value = null
-      // titulo.value = null
-      // vendedor.value = null
-      // telefono.value = null
-      // des.value = null
-      // precio.value = null
-      // accept.value = false
-      // model.value = null
-      // group.value = null
-      // imagen.value = null
-      //   datos.value = null
-
-      // }
+      ]
 
     }
   }
