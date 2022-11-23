@@ -43,6 +43,10 @@
             </q-item-section>
           </q-item>
         </q-list>
+        <div class="flex justify-center q-pt-md">
+                <q-btn @click="clickFilter" color="primary"  icon="fa-solid fa-filter"
+                  class="q-mr-lg" label="Filtrar"/>
+              </div>
 
       </q-scroll-area>
       <!-- Here -->
@@ -55,7 +59,8 @@
           <div class="col-lg-5 gt-sm hidde">
             <div class=" flex justify-center items-center">
               <div>
-                <q-btn @click="cargarDatosOriginales" v-show="hayFiltro" square color="primary" icon="delete" class="q-mr-lg"/>
+                <q-btn @click="cargarDatosOriginales" v-show="hayFiltro" square color="primary" icon="delete"
+                  class="q-mr-lg" />
               </div>
               <div class="q-mr-md">
                 <q-input label="Desde:" v-model.number="desde" type="number" rounded standout="bg-primary text-white"
@@ -109,13 +114,13 @@
 <script setup>
 import { onMounted, ref } from 'vue'
 const articulosOriginales = [
-  { id: '001', precio: 24.25, titulo: 'Samsung J6, Pantalla de 5.5 64GB, 2GB Ram, Color Negro', vendedor: 'juan perez', telefono: '806045-3456', fecha: '2013-06-03' },
-  { id: '002', precio: 60.05, titulo: 'Samsung J6, Pantalla de 5.5 64GB, 2GB Ram, Color Negro', vendedor: 'juan perez', telefono: '806045-3456', fecha: '2013-01-03' },
-  { id: '003', precio: 46.32, titulo: 'Samsung J6, Pantalla de 5.5 64GB, 2GB Ram, Color Negro', vendedor: 'juan perez', telefono: '806045-3456', fecha: '2013-01-02' },
-  { id: '004', precio: 10.89, titulo: 'Samsung J6, Pantalla de 5.5 64GB, 2GB Ram, Color Negro', vendedor: 'juan perez', telefono: '806045-3456', fecha: '2013-01-04' },
-  { id: '005', precio: 67.66, titulo: 'Samsung J6, Pantalla de 5.5 64GB, 2GB Ram, Color Negro', vendedor: 'juan perez', telefono: '806045-3456', fecha: '2013-10-03' },
-  { id: '006', precio: 67.25, titulo: 'Samsung J6, Pantalla de 5.5 64GB, 2GB Ram, Color Negro', vendedor: 'juan perez', telefono: '806045-3456', fecha: '2013-07-30' },
-  { id: '007', precio: 36.02, titulo: 'Samsung J6, Pantalla de 5.5 64GB, 2GB Ram, Color Negro', vendedor: 'juan perez', telefono: '806045-3456', fecha: '2013-08-30' }
+  { id: '001', precio: 24.25, titulo: 'Samsung J6, Pantalla de 5.5 64GB, 2GB Ram, Color Negro', vendedor: 'juan perez', telefono: '806045-3456', fecha: '2013-06-03', marca: 'Samsung', sistema: 'Android', pantalla: '6.0' },
+  { id: '002', precio: 60.05, titulo: 'Samsung J6, Pantalla de 5.5 64GB, 2GB Ram, Color Negro', vendedor: 'juan perez', telefono: '806045-3456', fecha: '2013-01-03', marca: 'Samsung', sistema: 'Android', pantalla: '6.0' },
+  { id: '003', precio: 46.32, titulo: 'Samsung J6, Pantalla de 5.5 64GB, 2GB Ram, Color Negro', vendedor: 'juan perez', telefono: '806045-3456', fecha: '2013-01-02', marca: 'Nokia', sistema: 'IOS', pantalla: '5.5' },
+  { id: '004', precio: 10.89, titulo: 'Samsung J6, Pantalla de 5.5 64GB, 2GB Ram, Color Negro', vendedor: 'juan perez', telefono: '806045-3456', fecha: '2013-01-04', marca: 'Huawei', sistema: 'IOS', pantalla: '5' },
+  { id: '005', precio: 67.66, titulo: 'Samsung J6, Pantalla de 5.5 64GB, 2GB Ram, Color Negro', vendedor: 'juan perez', telefono: '806045-3456', fecha: '2013-10-03', marca: 'Iphone', sistema: 'Windows', pantalla: '5.5' },
+  { id: '006', precio: 67.25, titulo: 'Samsung J6, Pantalla de 5.5 64GB, 2GB Ram, Color Negro', vendedor: 'juan perez', telefono: '806045-3456', fecha: '2013-07-30', marca: 'Xiaomi', sistema: 'Android', pantalla: '6.0' },
+  { id: '007', precio: 36.02, titulo: 'Samsung J6, Pantalla de 5.5 64GB, 2GB Ram, Color Negro', vendedor: 'juan perez', telefono: '806045-3456', fecha: '2013-08-30', marca: 'Iphone', sistema: 'Android', pantalla: '5.5' }
 ]
 const articulos = ref([])
 const sortBy = ref('PRECIO')
@@ -123,7 +128,9 @@ const sortOption = ref([
   { label: 'PRECIO', value: 'PRECIO' },
   { label: 'FECHA', value: 'FECHA' }
 ])
-
+const valorMarcas = ref([])
+const valorSistemas = ref([])
+const valorPantallas = ref([])
 const sistemas = ref([
   { value: false, label: 'Android', cantidad: 25 },
   { value: false, label: 'IOS', cantidad: 18 },
@@ -191,6 +198,64 @@ function cargarDatosOriginales () {
   articulosOriginales.forEach(item => {
     articulos.value.push(item)
   })
+}
+
+function clickFilter () {
+  marcas.value.forEach(item => {
+    if (item.value) {
+      valorMarcas.value.push(item.label)
+    }
+  })
+  sistemas.value.forEach(item => {
+    if (item.value) {
+      valorSistemas.value.push(item.label)
+    }
+  })
+
+  pantallas.value.forEach(item => {
+    if (item.value) {
+      pantallas.value.push(item.label)
+    }
+  })
+  aplicarFiltroCheckbox()
+}
+
+function aplicarFiltroCheckbox () {
+  if (valorMarcas.value.length > 0) {
+    hayFiltro.value = true
+    articulos.value = articulos.value.filter((item) => {
+      if (valorMarcas.value.includes(item.marca)) {
+        return true
+      } else {
+        return false
+      }
+    })
+    valorMarcas.value = []
+  }
+
+  if (valorSistemas.value.length > 0) {
+    hayFiltro.value = true
+    articulos.value = articulos.value.filter((item) => {
+      if (valorSistemas.value.includes(item.sistema)) {
+        return true
+      } else {
+        return false
+      }
+    })
+    valorSistemas.value = []
+  }
+
+  if (valorPantallas.value.length > 0) {
+    hayFiltro.value = true
+    articulos.value = articulos.value.filter((item) => {
+      if (valorPantallas.value.includes(item.pantalla)) {
+        return true
+      } else {
+        return false
+      }
+    })
+    valorPantallas.value = []
+  }
 }
 
 onMounted(() => {
