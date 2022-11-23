@@ -464,7 +464,8 @@ export default {
       console.log('subirimagenes')
       $q.notify({
         message: 'Se guardo la informacion',
-        color: 'green'
+        color: 'green',
+        icon: 'save'
       })
       router.push('../')
       myTimeout = setTimeout(inicio, 1000)
