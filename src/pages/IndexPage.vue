@@ -191,11 +191,11 @@ function cargarDatosOriginales () {
   articulosOriginales.forEach(item => {
     articulos.value.push(item)
   })
-  sortCards()
 }
 
 onMounted(() => {
   cargarDatosOriginales()
+  sortCards()
 })
 
 </script>
