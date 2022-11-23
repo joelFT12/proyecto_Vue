@@ -214,7 +214,7 @@ function clickFilter () {
 
   pantallas.value.forEach(item => {
     if (item.value) {
-      pantallas.value.push(item.label)
+      valorPantallas.value.push(item.label)
     }
   })
   aplicarFiltroCheckbox()
