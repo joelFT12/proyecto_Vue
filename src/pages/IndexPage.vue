@@ -17,7 +17,7 @@
           </q-item>
         </q-list>
         <q-list bordered separator class="text-center q-mt-lg">
-          <span class="text-h6 text-primary">Marcas</span>
+          <span class="text-h6 text-primary">Sistemas</span>
           <q-item v-for="(sistema, key) in sistemas" :key="'sis-' + key" clickable v-ripple class="">
             <q-item-section>
               <q-checkbox v-model="sistema.value">
@@ -31,7 +31,7 @@
         </q-list>
 
         <q-list bordered separator class="text-center q-mt-lg">
-          <span class="text-h6 text-primary">Marcas</span>
+          <span class="text-h6 text-primary">Pantallas</span>
           <q-item v-for="(pantalla, key) in pantallas" :key="'pan-' + key" clickable v-ripple class="">
             <q-item-section>
               <q-checkbox v-model="pantalla.value">
