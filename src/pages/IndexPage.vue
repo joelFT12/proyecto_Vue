@@ -44,17 +44,87 @@
           </q-item>
         </q-list>
         <div class="flex justify-center q-pt-md">
-                <q-btn @click="clickFilter" color="primary"  icon="fa-solid fa-filter"
-                  class="q-mr-lg" label="Filtrar"/>
-              </div>
+          <q-btn @click="clickFilter" color="primary" icon="fa-solid fa-filter" class="q-mr-lg" label="Filtrar" />
+        </div>
 
       </q-scroll-area>
       <!-- Here -->
       <div class="col ">
         <div class="row q-mt-md flex  justify-center items-center ">
+          <div class="lt-md hidde">
+                <q-btn @click="cargarDatosOriginales" v-show="hayFiltro" square color="primary" icon="delete"
+                  class="q-mr-lg" />
+              </div>
           <div class="col-lg-2 q-mr-lg lt-md hidde">
             <q-select outlined v-model="sortBy" :options="sortOption" color="primary"
               @update:model-value="sortSelect" />
+          </div>
+          <div class="lt-md hidde">
+            <q-btn-dropdown color="primary" label="" icon="fa-solid fa-filter">
+              <q-list>
+                <q-item clickable v-close-popup @click="onItemClick">
+                  <q-item-section>
+                    <q-item-label>
+                      <q-list bordered separator class="text-center">
+          <span class="text-h6 text-primary">Marcas</span>
+          <q-item v-for="(marca, key) in marcas" :key="'mar-' + key" clickable v-ripple class="">
+            <q-item-section>
+              <q-checkbox v-model="marca.value">
+                {{ marca.label }}
+                <q-badge color="bg-primary q-ml-sm" align="top">
+                  {{ marca.cantidad }}
+                </q-badge>
+              </q-checkbox>
+            </q-item-section>
+          </q-item>
+        </q-list>
+                    </q-item-label>
+                  </q-item-section>
+                </q-item>
+                <q-item clickable v-close-popup @click="onItemClick">
+                  <q-item-section>
+                    <q-item-label>
+                      <q-list bordered separator class="text-center q-mt-lg">
+          <span class="text-h6 text-primary">Sistemas</span>
+          <q-item v-for="(sistema, key) in sistemas" :key="'sis-' + key" clickable v-ripple class="">
+            <q-item-section>
+              <q-checkbox v-model="sistema.value">
+                {{ sistema.label }}
+                <q-badge color="bg-primary q-ml-sm" align="top">
+                  {{ sistema.cantidad }}
+                </q-badge>
+              </q-checkbox>
+            </q-item-section>
+          </q-item>
+        </q-list>
+                    </q-item-label>
+                  </q-item-section>
+                </q-item>
+
+                <q-item clickable v-close-popup @click="onItemClick">
+                  <q-item-section>
+                    <q-item-label>
+                      <q-list bordered separator class="text-center q-mt-lg">
+                        <span class="text-h6 text-primary">Pantallas</span>
+                        <q-item v-for="(pantalla, key) in pantallas" :key="'pan-' + key" clickable v-ripple class="">
+                          <q-item-section>
+                            <q-checkbox v-model="pantalla.value">
+                              {{ pantalla.label }}
+                              <q-badge color="bg-primary q-ml-sm" align="top">
+                                {{ pantalla.cantidad }}
+                              </q-badge>
+                            </q-checkbox>
+                          </q-item-section>
+                        </q-item>
+                      </q-list>
+                    </q-item-label>
+                  </q-item-section>
+                </q-item>
+              </q-list>
+              <div class="flex justify-center q-pa-md ">
+          <q-btn @click="clickFilter" color="primary" icon="fa-solid fa-filter" class="q-mr-lg" label="Filtrar" />
+        </div>
+            </q-btn-dropdown>
           </div>
           <div class="col-lg-5 gt-sm hidde">
             <div class=" flex justify-center items-center">
