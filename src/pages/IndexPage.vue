@@ -52,9 +52,9 @@
       <div class="col ">
         <div class="row q-mt-md flex  justify-center items-center ">
           <div class="lt-md hidde">
-                <q-btn @click="cargarDatosOriginales" v-show="hayFiltro" square color="primary" icon="delete"
-                  class="q-mr-lg" />
-              </div>
+            <q-btn @click="cargarDatosOriginales" v-show="hayFiltro" square color="primary" icon="delete"
+              class="q-mr-lg" />
+          </div>
           <div class="col-lg-2 q-mr-lg lt-md hidde">
             <q-select outlined v-model="sortBy" :options="sortOption" color="primary"
               @update:model-value="sortSelect" />
@@ -66,18 +66,18 @@
                   <q-item-section>
                     <q-item-label>
                       <q-list bordered separator class="text-center">
-          <span class="text-h6 text-primary">Marcas</span>
-          <q-item v-for="(marca, key) in marcas" :key="'mar-' + key" clickable v-ripple class="">
-            <q-item-section>
-              <q-checkbox v-model="marca.value">
-                {{ marca.label }}
-                <q-badge color="bg-primary q-ml-sm" align="top">
-                  {{ marca.cantidad }}
-                </q-badge>
-              </q-checkbox>
-            </q-item-section>
-          </q-item>
-        </q-list>
+                        <span class="text-h6 text-primary">Marcas</span>
+                        <q-item v-for="(marca, key) in marcas" :key="'mar-' + key" clickable v-ripple class="">
+                          <q-item-section>
+                            <q-checkbox v-model="marca.value">
+                              {{ marca.label }}
+                              <q-badge color="bg-primary q-ml-sm" align="top">
+                                {{ marca.cantidad }}
+                              </q-badge>
+                            </q-checkbox>
+                          </q-item-section>
+                        </q-item>
+                      </q-list>
                     </q-item-label>
                   </q-item-section>
                 </q-item>
@@ -85,18 +85,18 @@
                   <q-item-section>
                     <q-item-label>
                       <q-list bordered separator class="text-center q-mt-lg">
-          <span class="text-h6 text-primary">Sistemas</span>
-          <q-item v-for="(sistema, key) in sistemas" :key="'sis-' + key" clickable v-ripple class="">
-            <q-item-section>
-              <q-checkbox v-model="sistema.value">
-                {{ sistema.label }}
-                <q-badge color="bg-primary q-ml-sm" align="top">
-                  {{ sistema.cantidad }}
-                </q-badge>
-              </q-checkbox>
-            </q-item-section>
-          </q-item>
-        </q-list>
+                        <span class="text-h6 text-primary">Sistemas</span>
+                        <q-item v-for="(sistema, key) in sistemas" :key="'sis-' + key" clickable v-ripple class="">
+                          <q-item-section>
+                            <q-checkbox v-model="sistema.value">
+                              {{ sistema.label }}
+                              <q-badge color="bg-primary q-ml-sm" align="top">
+                                {{ sistema.cantidad }}
+                              </q-badge>
+                            </q-checkbox>
+                          </q-item-section>
+                        </q-item>
+                      </q-list>
                     </q-item-label>
                   </q-item-section>
                 </q-item>
@@ -122,8 +122,8 @@
                 </q-item>
               </q-list>
               <div class="flex justify-center q-pa-md ">
-          <q-btn @click="clickFilter" color="primary" icon="fa-solid fa-filter" class="q-mr-lg" label="Filtrar" />
-        </div>
+                <q-btn @click="clickFilter" color="primary" icon="fa-solid fa-filter" class="q-mr-lg" label="Filtrar" />
+              </div>
             </q-btn-dropdown>
           </div>
           <div class="col-lg-5 gt-sm hidde">
@@ -167,12 +167,11 @@
               </q-card-section>
 
               <q-card-section class="q-pt-none text-justify">
-                Samsung J6, Pantalla de 5.5
-                64GB, 2GB Ram, Color Negro
+                {{item.titulo}}
               </q-card-section>
               <q-separator />
               <q-card-actions class="flex justify-end">
-                <q-btn outline color="primary" to="compra/ertb">Detalles</q-btn>
+                <q-btn outline color="primary" :to="'compra/'+item.id">Detalles</q-btn>
               </q-card-actions>
             </q-card>
           </div>
@@ -183,15 +182,10 @@
 </template>
 <script setup>
 import { onMounted, ref } from 'vue'
-const articulosOriginales = [
-  { id: '001', precio: 24.25, titulo: 'Samsung J6, Pantalla de 5.5 64GB, 2GB Ram, Color Negro', vendedor: 'juan perez', telefono: '806045-3456', fecha: '2013-06-03', marca: 'Samsung', sistema: 'Android', pantalla: '6.0' },
-  { id: '002', precio: 60.05, titulo: 'Samsung J6, Pantalla de 5.5 64GB, 2GB Ram, Color Negro', vendedor: 'juan perez', telefono: '806045-3456', fecha: '2013-01-03', marca: 'Samsung', sistema: 'Android', pantalla: '6.0' },
-  { id: '003', precio: 46.32, titulo: 'Samsung J6, Pantalla de 5.5 64GB, 2GB Ram, Color Negro', vendedor: 'juan perez', telefono: '806045-3456', fecha: '2013-01-02', marca: 'Nokia', sistema: 'IOS', pantalla: '5.5' },
-  { id: '004', precio: 10.89, titulo: 'Samsung J6, Pantalla de 5.5 64GB, 2GB Ram, Color Negro', vendedor: 'juan perez', telefono: '806045-3456', fecha: '2013-01-04', marca: 'Huawei', sistema: 'IOS', pantalla: '5' },
-  { id: '005', precio: 67.66, titulo: 'Samsung J6, Pantalla de 5.5 64GB, 2GB Ram, Color Negro', vendedor: 'juan perez', telefono: '806045-3456', fecha: '2013-10-03', marca: 'Iphone', sistema: 'Windows', pantalla: '5.5' },
-  { id: '006', precio: 67.25, titulo: 'Samsung J6, Pantalla de 5.5 64GB, 2GB Ram, Color Negro', vendedor: 'juan perez', telefono: '806045-3456', fecha: '2013-07-30', marca: 'Xiaomi', sistema: 'Android', pantalla: '6.0' },
-  { id: '007', precio: 36.02, titulo: 'Samsung J6, Pantalla de 5.5 64GB, 2GB Ram, Color Negro', vendedor: 'juan perez', telefono: '806045-3456', fecha: '2013-08-30', marca: 'Iphone', sistema: 'Android', pantalla: '5.5' }
-]
+import { db } from 'src/boot/database'
+import { collection, getDocs } from 'firebase/firestore'
+
+let articulosOriginales = []
 const articulos = ref([])
 const sortBy = ref('PRECIO')
 const sortOption = ref([
@@ -260,14 +254,23 @@ function filtrarPrecio () {
   }
 }
 
-function cargarDatosOriginales () {
+async function cargarDatosOriginales () {
+  articulosOriginales = []
   desde.value = 0
   hasta.value = 0
   hayFiltro.value = false
   articulos.value = []
-  articulosOriginales.forEach(item => {
-    articulos.value.push(item)
+  let count = 0
+  // articulosOriginales.forEach(item => {
+  //   articulos.value.push(item)
+  // })
+  const querySnapshot = await getDocs(collection(db, 'articulos'))
+  querySnapshot.forEach((doc) => {
+    articulosOriginales.push(doc.data())
+    articulosOriginales[count].id = doc.id
+    count++
   })
+  completeFiles()
 }
 
 function clickFilter () {
@@ -328,9 +331,13 @@ function aplicarFiltroCheckbox () {
   }
 }
 
+function completeFiles () {
+  articulos.value = [...articulosOriginales]
+  sortCards()
+}
+
 onMounted(() => {
   cargarDatosOriginales()
-  sortCards()
 })
 
 </script>
