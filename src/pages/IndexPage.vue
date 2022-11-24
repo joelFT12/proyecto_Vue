@@ -160,14 +160,17 @@
         <div class="row q-pr-xs q-mt-xs">
           <div class="col-lg-3 col-md-3 col-xs-6 q-pa-xs q-mt-md" v-for="(item, key) in articulos" :key="key">
             <q-card class=" my-card" flat bordered>
-              <q-img src="https://cdn.quasar.dev/img/parallax2.jpg"></q-img>
+              <q-img :ratio="16/9" :src="item.imagen"></q-img>
 
               <q-card-section>
                 <div class="text-h6">${{ item.precio }}</div>
               </q-card-section>
 
               <q-card-section class="q-pt-none text-justify">
-                {{item.titulo}}
+                <!-- {{item.titulo}} -->
+                <q-item-section>
+          <q-item-label  lines="1" class="" >{{ item.titulo }}</q-item-label>
+        </q-item-section>
               </q-card-section>
               <q-separator />
               <q-card-actions class="flex justify-end">
@@ -184,6 +187,9 @@
 import { onMounted, ref } from 'vue'
 import { db } from 'src/boot/database'
 import { collection, getDocs } from 'firebase/firestore'
+import { getStorage, ref as refStorage, listAll, getDownloadURL } from 'firebase/storage'
+
+const storage = getStorage()
 
 let articulosOriginales = []
 const articulos = ref([])
@@ -202,21 +208,25 @@ const sistemas = ref([
 ])
 
 const marcas = ref([
-  { value: false, label: 'Samsung', cantidad: 25 },
+  { value: false, label: 'Samsung', cantidad: 2 },
   { value: false, label: 'Huawei', cantidad: 18 },
   { value: false, label: 'Nokia', cantidad: 3 },
   { value: false, label: 'Iphone', cantidad: 3 },
-  { value: false, label: 'Xiaomi', cantidad: 3 }
+  { value: false, label: 'Xiaomi', cantidad: 3 },
+  { value: false, label: 'Motorola', cantidad: 2 },
+  { value: false, label: 'Otros', cantidad: 1 }
 ])
 const pantallas = ref([
-  { value: false, label: '6.0', cantidad: 25 },
-  { value: false, label: '5.5', cantidad: 18 },
-  { value: false, label: '5', cantidad: 3 }
+  { value: false, label: '6,0', cantidad: 25 },
+  { value: false, label: '5,5', cantidad: 18 },
+  { value: false, label: '5', cantidad: 3 },
+  { value: false, label: '6,5', cantidad: 25 }
 ])
 
 const desde = ref(0)
 const hasta = ref(0)
 const hayFiltro = ref(false)
+const countPhotos = ref(0)
 
 function sortCards () {
   if (sortBy.value === 'PRECIO') {
@@ -260,6 +270,7 @@ async function cargarDatosOriginales () {
   hasta.value = 0
   hayFiltro.value = false
   articulos.value = []
+  countPhotos.value = 0
   let count = 0
   // articulosOriginales.forEach(item => {
   //   articulos.value.push(item)
@@ -270,7 +281,8 @@ async function cargarDatosOriginales () {
     articulosOriginales[count].id = doc.id
     count++
   })
-  completeFiles()
+  // completeFiles()
+  setImage()
 }
 
 function clickFilter () {
@@ -309,7 +321,7 @@ function aplicarFiltroCheckbox () {
   if (valorSistemas.value.length > 0) {
     hayFiltro.value = true
     articulos.value = articulos.value.filter((item) => {
-      if (valorSistemas.value.includes(item.sistema)) {
+      if (valorSistemas.value.includes(item.model)) {
         return true
       } else {
         return false
@@ -331,9 +343,34 @@ function aplicarFiltroCheckbox () {
   }
 }
 
+function setImage () {
+  articulosOriginales.forEach((item) => {
+    const listRef = refStorage(storage, item.id)
+    listAll(listRef)
+      .then((res) => {
+        if (res.items.length > 0) {
+          getDownloadURL(refStorage(storage, res.items[0].fullPath))
+            .then((url) => {
+              countPhotos.value++
+              item.imagen = url
+              // console.log(url)
+              completeFiles()
+            })
+            .catch((error) => {
+              console.log(error)
+            })
+        }
+      }).catch((error) => {
+        console.log(error)
+      })
+  })
+}
+
 function completeFiles () {
-  articulos.value = [...articulosOriginales]
-  sortCards()
+  if (countPhotos.value === articulosOriginales.length) {
+    articulos.value = [...articulosOriginales]
+    sortCards()
+  }
 }
 
 onMounted(() => {
