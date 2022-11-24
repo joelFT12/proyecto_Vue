@@ -28,12 +28,12 @@
             <div class="row justify-evenly ">
 
               <!-- contenedor 1 especificaciones del celular-->
-              <div class=" col-lg-6 col-md-6  col-sm-6 col-xs-12  bg-white text-black contenedor1">
+              <div class=" col-lg-6 col-md-6  col-sm-12 col-xs-12 q-pl-lg bg-white text-black contenedor1">
 
-                <div class="col-12">
-                  <!-- estado del movil -->
+                <div class="col-12 q-pl-md">
+                  <!-- estado del mo vil -->
                   <div class="row items-center " style="margin-bottom:20px">
-                    <label for="inputPantalla" class="col-lg-2 col-md-2  col-sm-2 col-xs-2">Estado: </label>
+                    <label for="inputPantalla" class="col-lg-3 col-md-3  col-sm-3 col-xs-3">Estado: </label>
                     <div>
                       <q-form
                       @submit.prevent.stop="onSubmit"
@@ -43,6 +43,7 @@
                         v-model="datos.group"
                         :options="options"
                         color="primary"
+                        style="margin-left:-17px"
                         ref="estadoB"
                         inline
                       />
@@ -53,8 +54,8 @@
 
                   <!-- marca -->
                   <div class="row items-center maar ">
-                    <label for="inputMarca" class="col-lg-2 col-md-2  col-sm-2 col-xs-2" style="margin-top:-12px">Marca: </label>
-                    <div class="col-5">
+                    <label for="inputMarca" class="col-lg-3 col-md-3  col-sm-3 col-xs-3" style="margin-top:-12px">Marca: </label>
+                    <div class="col-7">
                     <div class="q-gutter-y-md column">
 
                       <!-- equivalent -->
@@ -79,8 +80,8 @@
                   </div>
                   <!-- modelo -->
                   <div class="row items-center maar">
-                    <label for="inputMarca" class="col-lg-2 col-md-2  col-sm-2 col-xs-2" style="margin-top:-12px">Modelo: </label>
-                    <div class="col-5 ">
+                    <label for="inputMarca" class="col-lg-3 col-md-3  col-sm-3 col-xs-3" style="margin-top:-12px">Modelo: </label>
+                    <div class="col-7 ">
                       <q-form
                       @submit.prevent.stop="onSubmit"
                       @reset.prevent.stop="onReset"
@@ -101,8 +102,8 @@
                   </div>
                   <!-- pantalla -->
                   <div class="row items-center maar">
-                    <label for="inputMarca" class="col-lg-2 col-md-2  col-sm-2 col-xs-2" style="margin-top:-12px" >Pantalla: </label>
-                    <div class="col-4 ">
+                    <label for="inputMarca" class="col-lg-3 col-md-3  col-sm-3 col-xs-3" style="margin-top:-12px" >Pantalla: </label>
+                    <div class="col-6 ">
                       <div class="q-gutter-y-md column">
 
                         <!-- equivalent -->
@@ -129,8 +130,8 @@
 
                   <!-- sistema -->
                   <div class=" maar row items-center" style="margin-bottom:20px">
-                    <label for="inputSis" class="col-lg-2 col-md-2  col-sm-2 col-xs-2">Sistema:</label>
-                    <div class="col-3">
+                    <label for="inputSis" class="col-lg-3 col-md-3  col-sm-3 col-xs-3">Sistema:</label>
+                    <div class="col-7">
                     <!-- <sistemaOpt></sistemaOpt> -->
                     <div class="q-gutter-y-md column">
 
@@ -156,7 +157,7 @@
 
                   <!-- rom -->
                   <div class="row items-center maar">
-                    <label for="inputMarca" class="col-lg-2 col-md-2 col-sm-2 col-xs-2" style="margin-top:-12px">ROM: </label>
+                    <label for="inputMarca" class="col-lg-3 col-md-3 col-sm-3 col-xs-3" style="margin-top:-12px">ROM: </label>
                     <div class="col-4">
                       <q-form
                       @submit.prevent.stop="onSubmit"
@@ -182,8 +183,8 @@
                   </div>
                   <!-- ram -->
                   <div class="row items-center maar">
-                    <label for="inputMarca" class="col-lg-2 col-md-2  col-sm-2 col-xs-2" style="margin-top:-12px">RAM: </label>
-                    <div class="col-4">
+                    <label for="inputMarca" class="col-lg-3 col-md-3  col-sm-3 col-xs-3" style="margin-top:-12px">RAM: </label>
+                    <div class="col-7">
                       <q-form
                       @submit.prevent.stop="onSubmit"
                       @reset.prevent.stop="onReset"
@@ -210,10 +211,10 @@
               </div>
 
               <!-- contenedor 2 informacion del vendedor-->
-              <div class="col-lg-5 col-sm-5 col-xs-12  text-white column justify-center q-gutter-y-md">
+              <div class="col-lg-5  col-md-5 col-sm-12 col-xs-12  text-white column justify-center q-gutter-y-md q-px-lg">
                 <!-- titulo -->
                 <div class="row q-gutter-y-md">
-                  <label class="col-6">Titulo breve del anuncio:</label>
+                  <label class="col-9">Titulo breve del anuncio:</label>
 
                   <div class="col-12">
                     <q-form
@@ -236,8 +237,8 @@
                 </div>
                 <!-- vendedor -->
                 <div class="row items-center ">
-                  <label class="col-lg-2 col-md-2 col-sm-2 col-xs-3" style="margin-top:-12px">Vendedor: </label>
-                  <div class="col-7">
+                  <label class="col-lg-3 col-md-3 col-sm-3 col-xs-3" style="margin-top:-12px">Vendedor: </label>
+                  <div class="col-9">
                     <q-form
                     @submit.prevent.stop="onSubmit"
                     @reset.prevent.stop="onReset"
@@ -259,8 +260,8 @@
                 </div>
                 <!-- telefono -->
                 <div class="row items-center ">
-                  <label class="col-lg-2 col-md-2 col-sm-2 col-xs-3" style="margin-top:-12px">Telefono: </label>
-                  <div class="col-5">
+                  <label class="col-lg-3 col-md-3 col-sm-3 col-xs-3" style="margin-top:-12px">Telefono: </label>
+                  <div class="col-9">
                     <q-form
                     @submit.prevent.stop="onSubmit"
                     @reset.prevent.stop="onReset"
@@ -285,7 +286,7 @@
                 </div>
                 <!-- Descripcion -->
                 <div class="row items-center q-gutter-y-md">
-                  <label class="col-lg-2 col-md-2 col-sm-2 col-xs-3" style="margin-top:-12px">Descripción: </label>
+                  <label class="col-lg-3 col-md-3 col-sm-3 col-xs-3" style="margin-top:-12px">Descripción: </label>
                   <div class="col-12" >
                     <q-form
                     @submit.prevent.stop="onSubmit"
@@ -314,31 +315,45 @@
               <!-- contenedor 3 añadir imagenes-->
               <div class="col-lg-6 col-md-6  col-sm-6 col-xs-12  bg-white text-black contenedor1  q-gutter-y-md">
                 <label>Añadir imagenes de producto a vender</label>
-                  <div class="row justify-center " >
-                    <!-- <agregarFotos ></agregarFotos> -->
-                    <div>
-                    <q-uploader
-                    url="gs://ebaycellphone-a2b19.appspot.com"
-                    label="Elige tus imagenes"
-                    multiple
-                    batch
 
-                    color="purple-8"
-                    style="width: 325px; height: 270px;"
-                    accept=".jpg, .png, image/*"
+                <div class="row justify-evenly " >
 
-                    @submit.prevent.stop="onSubmit"
-                    @reset.prevent.stop="onReset"
-                  />
+                  <div class="col-10">
+
+                  <q-file
+                  v-model="files"
+                  label="Elige imagenes para el dispositivo"
+                  filled
+                  multiple
+                  accept=".jpg, image/*"
+
+                  @update:model-value="obtenerURL"
+                />
                 </div>
+
+                <div class="col-lg-8 col-md-8  col-sm-6 col-xs-12">
+                  <q-carousel
+                  animated
+                  v-model="slide"
+                  arrows
+                  navigation
+                  infinite
+                  style="max-width: 500px; max-height: 200px; margin-top: 20px; border-radius:.5em"
+                  v-if="fotosURL.length > 0"
+                  >
+                  <q-carousel-slide v-for="(img,id) in fotosURL" :key="id" :name="id+1" :img-src="img" />
+                  </q-carousel>
                 </div>
+
+              </div>
 
               </div>
 
              <!-- contenedor 4 botones de guardado-->
              <div class="col-lg-5 col-md-5  col-sm-5 col-xs-12  text-black contenedor1 column justify-center">
               <div class="row justify-center ">
-                <div class="bg-white precios q-mb-xl col-9" >
+
+                <div class="bg-white precios q-mb-xl col-9 " >
                   <div class="q-gutter-y-sm ">
                     <label class="" style="margin-top:-12px">Precio: </label>
                     <div class="row justify-center">
@@ -366,34 +381,36 @@
 
                   </div>
                 </div>
-              <div class="q-pa-sm q-gutter-lg">
-                <q-btn
-                  class="iconos"
-                  dark-percentage
-                  unelevated
-                  color="white"
-                  text-color="purple-9"
-                  @click="borrarDatos"
-                  label="Cancelar"
-                  type="reset"
-                  icon="fa-solid fa-circle-xmark"
+                <div  class="col-lg-5 col-md-12  col-sm-12 col-xs-12 row justify-evenly">
+                  <div class="q-pa-sm q-gutter-lg ">
+                    <q-btn
+                      class="iconos"
+                      dark-percentage
+                      unelevated
+                      color="white"
+                      text-color="purple-9"
+                      @click="borrarDatos"
+                      label="Cancelar"
+                      type="reset"
+                      icon="fa-solid fa-circle-xmark"
 
-                />
-            </div>
-            <div class="q-pa-sm q-gutter-lg">
-              <q-btn
+                    />
+                </div>
+                <div class="q-pa-sm q-gutter-lg">
+                  <q-btn
 
-                  class="iconos"
-                  dark-percentage
-                  unelevated
-                  color="white"
-                  text-color="purple-9"
-                  @click="guardarDatos"
-                  label="Guardar"
-                  icon="fa-solid fa-floppy-disk"
+                      class="iconos"
+                      dark-percentage
+                      unelevated
+                      color="white"
+                      text-color="purple-9"
+                      @click="guardarDatos"
+                      label="Guardar"
+                      icon="fa-solid fa-floppy-disk"
 
-                />
-              </div>
+                    />
+                  </div>
+                </div>
 
             </div>
              </div>
@@ -426,7 +443,8 @@ const datos = ref({
   group: null,
   model: null,
   imagen: null,
-  precio: null
+  precio: null,
+  ima: null
 })
 
 // const accept = ref(false)
@@ -442,22 +460,30 @@ const romB = ref(null)
 const ramB = ref(null)
 const idMovil = ref('')
 let myTimeout = (null)
+const fotosURL = ref([])
+const files = ref(null)
 
-// const cargarDatos = async function () {
-//   const querySnapshot = await getDocs(collection(db, 'users'))
-//   querySnapshot.forEach((doc) => {
-//     console.log(`${doc.id} => ${doc.data()}`)
-//   })
-// }
 export default {
 
   setup () {
     const $q = useQuasar()
+
+    // const ima = ref(null)
     const inicio = function () {
       reloj()
     }
     const router = useRouter()
     const accept = ref(false)
+
+    const obtenerURL = function () {
+      console.log(files.value)
+      if (files.value) {
+        files.value.forEach(element => {
+          fotosURL.value.push(URL.createObjectURL(element))
+        })
+      }
+      console.log(fotosURL.value)
+    }
 
     // subir imagen
     const subirImagen = function () {
@@ -526,7 +552,12 @@ export default {
     }
 
     return {
+      slide: ref(1),
       guardarDatos,
+      files,
+      fotosURL,
+
+      obtenerURL,
       borrarDatos,
       subirImagen,
       subirDatos,
@@ -535,6 +566,8 @@ export default {
       router,
       myTimeout,
       inicio,
+      ima: ref(null),
+
       dialog: ref(false),
       maximizedToggle: ref(true),
       accept,
