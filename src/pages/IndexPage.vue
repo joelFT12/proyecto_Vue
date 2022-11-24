@@ -3,6 +3,9 @@
     <div class="row">
       <q-scroll-area style="height: 100vh; max-width: 250px;"
         class="col bg-white q-pt-lg q-pl-sm q-pr-sm  gt-sm hidde q-mr-sm">
+        <div class="flex q-pa-xs">
+          <q-toggle v-model="valueToggle" label="Nuevo" class="text-primary" />
+        </div>
         <q-list bordered separator class="text-center">
           <span class="text-h6 text-primary">Marcas</span>
           <q-item v-for="(marca, key) in marcas" :key="'mar-' + key" clickable v-ripple class="">
@@ -160,7 +163,7 @@
         <div class="row q-pr-xs q-mt-xs">
           <div class="col-lg-3 col-md-3 col-xs-6 q-pa-xs q-mt-md" v-for="(item, key) in articulos" :key="key">
             <q-card class=" my-card" flat bordered>
-              <q-img :ratio="16/9" :src="item.imagen"></q-img>
+              <q-img :ratio="16 / 9" :src="item.imagen"></q-img>
 
               <q-card-section>
                 <div class="text-h6">${{ item.precio }}</div>
@@ -169,12 +172,12 @@
               <q-card-section class="q-pt-none text-justify">
                 <!-- {{item.titulo}} -->
                 <q-item-section>
-          <q-item-label  lines="1" class="" >{{ item.titulo }}</q-item-label>
-        </q-item-section>
+                  <q-item-label lines="1" class="">{{ item.titulo }}</q-item-label>
+                </q-item-section>
               </q-card-section>
               <q-separator />
               <q-card-actions class="flex justify-end">
-                <q-btn outline color="primary" :to="'compra/'+item.id">Detalles</q-btn>
+                <q-btn outline color="primary" :to="'compra/' + item.id">Detalles</q-btn>
               </q-card-actions>
             </q-card>
           </div>
@@ -227,6 +230,7 @@ const desde = ref(0)
 const hasta = ref(0)
 const hayFiltro = ref(false)
 const countPhotos = ref(0)
+const valueToggle = ref(true)
 
 function sortCards () {
   if (sortBy.value === 'PRECIO') {
@@ -341,6 +345,21 @@ function aplicarFiltroCheckbox () {
     })
     valorPantallas.value = []
   }
+
+  hayFiltro.value = true
+  let validar = ''
+  if (valueToggle.value === true) {
+    validar = 'Nuevo'
+  } else {
+    validar = 'Usado'
+  }
+  articulos.value = articulos.value.filter(item => {
+    if (validar.includes(item.group)) {
+      return true
+    } else {
+      return false
+    }
+  })
 }
 
 function setImage () {

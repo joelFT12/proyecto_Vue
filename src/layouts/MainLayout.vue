@@ -91,7 +91,7 @@
           <q-item-section>Inicio</q-item-section>
         </q-item>
         <q-separator dark />
-        <q-item class=" q-py-md " clickable>
+        <q-item class=" q-py-md " clickable >
           <q-item-section avatar class="margen2">
             <q-avatar>
               <modalAgregar></modalAgregar>
