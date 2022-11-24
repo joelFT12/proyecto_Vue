@@ -1,5 +1,5 @@
 <template>
-<div class="bg-purple-1">
+<div style="background-color: #f4f1fb;" class="">
   <div class="text-center text-lg-start bg-success  text-muted mt-5">
     <!-- titulo del footer -->
     <section class="d-flex justify-content-center justify-content-lg-between p-4 border-bottom">
