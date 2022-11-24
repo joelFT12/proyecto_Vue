@@ -23,67 +23,78 @@
         <!-- <div  class="desktop-hide"><carruselMovil></carruselMovil></div> -->
 
         <!-- parte que solo se usa en esta pagina -->
-        <div class="col-12 col-md-5  q-mt-sm">
-          <q-card class="shadow-0 ancho">
+        <div class="col-11 col-md-5  q-mt-sm">
+          <q-card class="shadow-0 ">
             <q-card-section>
               <!-- titulo -->
-              <p class="mobile-hide text-capitalize">{{final.titulo}}</p>
-              <p class="desktop-hide text-capitalize">{{final.titulo}}
+              <p class="mobile-hide tamaño">{{final.titulo}}</p>
+              <p class="desktop-hide tamaño">{{final.titulo}}
               </p>
               <!-- precio -->
-              <p class="precio mobile-hide "><label>$ </label>{{final.precio}}</p>
-              <p class="precio1 desktop-hide"><label>$ </label>{{final.precio}}</p>
+              <p class="precio mobile-hide "><label>$ </label>{{final.precio}} Dolares</p>
+              <p class="precio1 desktop-hide "><label>$ </label>{{final.precio}}</p>
               <!-- boton comprar -->
-              <q-btn  class="boton mobile-hide" color="purple" label="Comprar" />
+              <q-btn  class="boton mobile-hide" color="purple" label="Comprar"  @click="compra" to="../" />
+
               <!-- nombre del vendedor -->
-              <q-card class="info col-12 ">
+              <q-card class=" col-10 q-my-lg">
                 <q-card-section>
-                    <div class="flex justify-between content-center rounded-3  shadow-sm col-12">
+                    <div class="flex justify-between content-center rounded-3  shadow-sm col-10 ">
                       <p class="centro">{{final.vendedor}}</p>
                       <p class="centro">{{final.telefono}}</p>
                     </div>
                 </q-card-section>
               </q-card>
+
             </q-card-section>
           </q-card>
         </div>
 
         <!-- componente de descripcion -->
-        <div class="q-pa-sm col-12">
-          <div class="row justify-evenly">
-            <q-card class="shadow-0 ancho row ">
-              <q-card-section>
-                <h4 class="text-center ">Descripción</h4>
-                <!-- card de especificacion -->
-                <div class="q-pa-md  q-gutter-md">
-                  <div class="carta col-lg-12 col-xs-12 col-md-12">
-                    <q-card >
-                      <q-card-section class=" col-lg-5 col-xs-12" >
-                        <label>Estado: {{final.group}}</label><br>
-                        <label>Marca: {{final.marca}}</label><br>
-                        <label>Modelo: {{final.modelo}}</label><br>
-                        <label>Pantalla: {{final.pantalla}}</label><br>
-                        <label>Sistema: {{final.model}}</label><br>
-                        <label>Rom: {{final.rom}} <label> GB de Almacenamiento interno </label></label><br>
-                        <label>Ram: {{final.ram}} <label> GB </label></label><br>
+        <div class=" col-12 row justify-evenly arriba mobile-hide">
+          <h4 class="text-center ">Descripción</h4>
+        </div>
 
-                      </q-card-section>
-                    </q-card>
-                  </div>
+        <!-- card de especificacion -->
+        <div class="arriba row justify-evenly col-12 q-mb-lg mobile-hide">
+          <q-card class="my-card col-4 q-mt-md">
+            <q-card-section>
+              <label>Estado: {{final.group}}</label><br>
+                          <label>Marca: {{final.marca}}</label><br>
+                          <label>Modelo: {{final.modelo}}</label><br>
+                          <label>Pantalla: {{final.pantalla}}</label><br>
+                          <label>Sistema: {{final.model}}</label><br>
+                          <label>Rom: {{final.rom}} <label> GB de Almacenamiento interno </label></label><br>
+                          <label>Ram: {{final.ram}} <label> GB </label></label><br>
+            </q-card-section>
+          </q-card>
+          <!-- card de descripcion -->
+          <q-card class="my-card col-4 q-mt-md">
+            <q-card-section>
+              {{ final.des }}
+            </q-card-section>
+          </q-card>
+        </div>
 
-                  </div>
-                  <div>
-                    <!-- card de descripcion -->
-                    <q-card class="carta col-lg-12 col-md-12 col-xs-12  " >
-                      <q-card-section >
-                        <label > {{final.des}}</label>
-                      </q-card-section>
-                    </q-card>
-                  </div>
-              </q-card-section>
-            </q-card>
-
-          </div>
+        <!-- movil -->
+        <div class="arriba row justify-evenly col-12 q-mb-lg desktop-hide" >
+          <q-card class="my-card col-10 q-mt-md">
+            <q-card-section>
+              <label>Estado: {{final.group}}</label><br>
+                          <label>Marca: {{final.marca}}</label><br>
+                          <label>Modelo: {{final.modelo}}</label><br>
+                          <label>Pantalla: {{final.pantalla}}</label><br>
+                          <label>Sistema: {{final.model}}</label><br>
+                          <label>Rom: {{final.rom}} <label> GB de Almacenamiento interno </label></label><br>
+                          <label>Ram: {{final.ram}} <label> GB </label></label><br>
+            </q-card-section>
+          </q-card>
+          <!-- card de descripcion -->
+          <q-card class="my-card col-10 q-mt-md">
+            <q-card-section>
+              {{ final.des }}
+            </q-card-section>
+          </q-card>
         </div>
 
       </div>
@@ -92,7 +103,7 @@
   <div class="desktop-hide fixed-bottom">
     <div class="row justify-evenly q-mb-md">
       <q-btn  class="boton " color="purple-5" label="Inicio" to="/compra/edtrft" />
-      <q-btn  class="boton text-purple-6" color="purple-1" label="Comprar" />
+      <q-btn  class="boton text-purple-6" color="purple-1" label="Comprar"  @click="compra" to="../"/>
     </div>
   </div>
 
@@ -100,25 +111,21 @@
 
 <script setup>
 import { onMounted, ref } from 'vue'
-// import carruselImagen from 'components/CarruselImagen.vue'
-// import descripcionCompra from 'components/descripcionCompra.vue'
-// import carruselMovil from 'components/carruselMovil.vue'
-// import botonesFlotantes from 'components/botonesFlotantes.vue'
 import { getStorage, ref as refStorage, listAll, getDownloadURL } from 'firebase/storage'
 import { db } from 'src/boot/database'
 import { collection, getDocs } from '@firebase/firestore'
 import { useRoute } from 'vue-router'
-
+import { useQuasar } from 'quasar'
 const storage = getStorage()
 const slide = ref(1)
-// const autoplay = ref(true)
 const route = useRoute()
 const articuloDetalle = ref([])
 const idarticulo = ref('')
 const articulo = ref([])
 const imagens = ref([])
 const final = ref({})
-
+// const router = useRouter()
+// let myTimeout = (null)
 async function cargarArticulos () {
   const querySnapshot = await getDocs(collection(db, 'articulos'))
   querySnapshot.forEach((doc) => {
@@ -159,12 +166,17 @@ function cargarImagenes () {
       })
   })
 }
-// function compra () {
-//   $q.notify({
-//     message: 'compra realizada',
-//     color: 'green'
-//   })
-// }
+const $q = useQuasar()
+function compra () {
+  $q.notify({
+    message: 'La compra se realizo con exito',
+    color: 'primary',
+    icon: 'fa-solid fa-check'
+  }
+  )
+  // router.push('../')
+  // myTimeout = setTimeout(inicio, 1500)
+}
 onMounted(() => {
   idarticulo.value = route.params.idCompra
   console.log(route.params.idCompra)
@@ -191,6 +203,12 @@ onMounted(() => {
 </script>
 
 <style>
+.tamaño{
+  font-size: 1.5em;
+}
+.arriba{
+  margin-top: -2em;
+}
 .carta{
   min-width: 200px;
 }
@@ -206,6 +224,7 @@ onMounted(() => {
 .precio1{
   text-align: center;
   font-size: 2.9em;
+  margin-left: -22px;
 }
 .boton{
   padding: 0.6em 1.5em 0.6em 1.5em;

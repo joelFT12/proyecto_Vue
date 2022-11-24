@@ -8,6 +8,7 @@ const routes = [
       { path: '', component: () => import('pages/IndexPage.vue') },
       { path: 'compra/:idCompra', component: () => import('src/pages/pruebaD.vue') }
     ]
+
   },
 
   // Always leave this as last one,
