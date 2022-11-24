@@ -65,7 +65,7 @@
                         filled
                         dense
                         v-model="datos.marca"
-
+                        :rules="[ val => val && val.length > 0 || 'Por favor completar']"
                         :options="marcas"
                         label="Marca"
                         style="margin-bottom: 1em;"
@@ -109,7 +109,7 @@
                         <!-- equivalent -->
                         <q-form @reset.prevent.stop="onReset" @submit.prevent.stop="onSubmit">
                           <q-select
-                          style="margin-bottom: 1em;"
+                          style="margin-bottom: .5em;"
                           color="purple-9"
                           filled
                           dense
@@ -118,6 +118,7 @@
                           label="Tamaño de pantalla"
                           ref="pantallaB"
                           clearable
+                          :rules="[val => val !== null && val !== '' || 'Selecciona un numero']"
                           >
                           </q-select>
                         </q-form>
@@ -125,7 +126,7 @@
                       </div>
 
                     </div>
-                    <span style="margin:-12px 0 0 10px">Pulgadas </span>
+                    <span style="margin:-20px 0 0 10px">Pulgadas </span>
                   </div>
 
                   <!-- sistema -->
@@ -142,7 +143,7 @@
                         filled
                         dense
                         v-model="datos.model"
-
+                        :rules="[val => val !== null && val !== '' || 'Selecciona un sistema']"
                         :options="optiones"
                         label="Sistema"
                         clearable
@@ -327,7 +328,7 @@
                   filled
                   multiple
                   accept=".jpg, image/*"
-
+                  :rules="[val => !!val || 'Campo Requerido']"
                   @update:model-value="obtenerURL"
                 />
                 </div>
@@ -618,7 +619,7 @@ export default {
       ],
 
       marcas: [
-        'Samsung', 'Iphone', 'Motorola', 'Xiaomi', 'Otra marca'
+        'Samsung', 'Iphone', 'Huawei', 'Motorola', 'Xiaomi', 'Otra marca'
       ],
 
       pantallas: [
