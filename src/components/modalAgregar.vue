@@ -1,7 +1,7 @@
 <template>
 
     <div class="">
-      <q-btn round labal="maximized" icon="fa-solid fa-circle-plus"   @click="dialog = true" />
+      <q-btn round labal="maximized" class="botn" desktop-hide icon="fa-solid fa-circle-plus"  @click="dialog = true" />
 
       <q-dialog
         v-model="dialog"
@@ -28,7 +28,7 @@
             <div class="row justify-evenly ">
 
               <!-- contenedor 1 especificaciones del celular-->
-              <div class=" col-lg-6 col-md-6  col-sm-12 col-xs-12 q-pl-lg bg-white text-black contenedor1">
+              <div class=" col-lg-6 col-md-6  col-sm-12 col-xs-12 q-pl-lg bg-white text-black contenedor1 mobile-hide">
 
                 <div class="col-12 q-pl-md">
                   <!-- estado del mo vil -->
@@ -46,6 +46,327 @@
                         style="margin-left:-17px"
                         ref="estadoB"
                         inline
+                      />
+                      </q-form>
+                    </div>
+
+                  </div>
+
+                  <!-- marca -->
+                  <div class="row items-center maar ">
+                    <label for="inputMarca" class="col-lg-3 col-md-3  col-sm-3 col-xs-3" style="margin-top:-12px">Marca: </label>
+                    <div class="col-7">
+                    <div class="q-gutter-y-md column">
+
+                      <!-- equivalent -->
+                      <q-form @reset.prevent.stop="onReset" @submit.prevent.stop="onSubmit">
+                        <q-select
+                        color="purple-9"
+                        filled
+                        dense
+                        v-model="datos.marca"
+                        :rules="[ val => val && val.length > 0 || 'Por favor completar']"
+                        :options="marcas"
+                        label="Marca"
+                        style="margin-bottom: 1em;"
+                        clearable
+                        ref="marB2"
+                        >
+                        </q-select>
+                      </q-form>
+
+                    </div>
+                    </div>
+                  </div>
+                  <!-- modelo -->
+                  <div class="row items-center maar">
+                    <label for="inputMarca" class="col-lg-3 col-md-3  col-sm-3 col-xs-3" style="margin-top:-12px">Modelo: </label>
+                    <div class="col-7 ">
+                      <q-form
+                      @submit.prevent.stop="onSubmit"
+                      @reset.prevent.stop="onReset"
+                    >
+                      <q-input
+                        color="purple-9"
+                        dense
+                        ref="modeloB2"
+                        filled
+                        type="text"
+                        v-model="datos.modelo"
+                        label="Modelo"
+                        lazy-rules
+                        :rules="[ val => val && val.length > 0 || 'Por favor completar']"
+                      />
+                    </q-form>
+                    </div>
+                  </div>
+                  <!-- pantalla -->
+                  <div class="row items-center maar">
+                    <label for="inputMarca" class="col-lg-3 col-md-3  col-sm-3 col-xs-3" style="margin-top:-12px" >Pantalla: </label>
+                    <div class="col-6 ">
+                      <div class="q-gutter-y-md column">
+
+                        <!-- equivalent -->
+                        <q-form @reset.prevent.stop="onReset" @submit.prevent.stop="onSubmit">
+                          <q-select
+                          style="margin-bottom: .5em;"
+                          color="purple-9"
+                          filled
+                          dense
+                          v-model="datos.pantalla"
+                          :options="pantallas"
+                          label="Tamaño de pantalla"
+                          ref="pantallaB"
+                          clearable
+                          :rules="[val => val !== null && val !== '' || 'Selecciona un numero']"
+                          >
+                          </q-select>
+                        </q-form>
+
+                      </div>
+
+                    </div>
+                    <span style="margin:-20px 0 0 10px">Pulgadas </span>
+                  </div>
+
+                  <!-- sistema -->
+                  <div class=" maar row items-center" style="margin-bottom:20px">
+                    <label for="inputSis" class="col-lg-3 col-md-3  col-sm-3 col-xs-3">Sistema:</label>
+                    <div class="col-7">
+                    <!-- <sistemaOpt></sistemaOpt> -->
+                    <div class="q-gutter-y-md column">
+
+                      <!-- equivalent -->
+                      <q-form @reset.prevent.stop="onReset" @submit.prevent.stop="onSubmit">
+                        <q-select
+                        color="purple-9"
+                        filled
+                        dense
+                        v-model="datos.model"
+                        :rules="[val => val !== null && val !== '' || 'Selecciona un sistema']"
+                        :options="optiones"
+                        label="Sistema"
+                        clearable
+                        >
+                        </q-select>
+                      </q-form>
+
+                    </div>
+                    </div>
+
+                  </div>
+
+                  <!-- rom -->
+                  <div class="row items-center maar">
+                    <label for="inputMarca" class="col-lg-3 col-md-3 col-sm-3 col-xs-3" style="margin-top:-12px">ROM: </label>
+                    <div class="col-4">
+                      <q-form
+                      @submit.prevent.stop="onSubmit"
+                      @reset.prevent.stop="onReset"
+                    >
+                      <q-input
+                        dense
+                        ref="romB"
+                        color="purple-9"
+                        type="number"
+                        filled
+                        v-model="datos.rom"
+                        label="ROM "
+                        lazy-rules
+                        :rules="[val => val !== null && val !== '' || 'Escribe un numero',
+                                val => val > 0 && val < 999999 || 'Ingresa otro numero']"
+                      />
+                    </q-form>
+
+                    </div>
+                    <span  class="col-lg-4 col-md-4  col-sm-4 col-xs-4" style="margin:-20px 0 0 10px ">Almacenamiento interno</span>
+
+                  </div>
+                  <!-- ram -->
+                  <div class="row items-center maar">
+                    <label for="inputMarca" class="col-lg-3 col-md-3  col-sm-3 col-xs-3" style="margin-top:-12px">RAM: </label>
+                    <div class="col-7">
+                      <q-form
+                      @submit.prevent.stop="onSubmit"
+                      @reset.prevent.stop="onReset"
+                    >
+                      <q-input
+                        dense
+                        ref="ramB"
+                        color="purple-9"
+                        type="number"
+                        filled
+                        v-model="datos.ram"
+                        label="RAM"
+                        lazy-rules
+                        :rules="[val => val !== null && val !== '' || 'Escribe un numero',
+                                val => val > 0 && val < 100 || 'Ingresa otro numero']"
+                      />
+                    </q-form>
+
+                    </div>
+
+                  </div>
+
+                </div>
+              </div>
+              <!-- contenedor 1 añadir imagenes en movil-->
+              <div class="col-lg-6 col-md-6  col-sm-6 col-xs-12  bg-white text-black contenedor1  q-gutter-y-md desktop-hide">
+                <label>Añadir imagenes de producto a vender</label>
+
+                <div class="row justify-evenly " >
+
+                  <div class="col-10">
+
+                  <q-file
+                  v-model="files"
+                  label="Elige imagenes para el dispositivo"
+                  filled
+                  multiple
+                  accept=".jpg, image/*"
+                  :rules="[val => !!val || 'Campo Requerido']"
+                  @update:model-value="obtenerURL"
+                />
+                </div>
+
+                <div class="col-lg-8 col-md-8  col-sm-6 col-xs-12">
+                  <q-carousel
+                  animated
+                  v-model="slide"
+                  arrows
+                  navigation
+                  infinite
+                  style="max-width: 500px; max-height: 200px; margin-top: 20px; border-radius:.5em"
+                  v-if="fotosURL.length > 0"
+                  >
+                  <q-carousel-slide v-for="(img,id) in fotosURL" :key="id" :name="id+1" :img-src="img" />
+                  </q-carousel>
+                </div>
+
+              </div>
+
+              </div>
+
+              <!-- contenedor 2 informacion del vendedor-->
+              <div class="col-lg-5  col-md-5 col-sm-12 col-xs-12  text-white column justify-center q-gutter-y-md q-px-lg">
+                <!-- titulo -->
+                <div class="row q-gutter-y-md">
+                  <label class="col-9">Titulo breve del anuncio:</label>
+
+                  <div class="col-12">
+                    <q-form
+                    @submit.prevent.stop="onSubmit"
+                    @reset.prevent.stop="onReset"
+                  >
+                    <q-input
+                      color="purple-9"
+                      ref="tituloB"
+                      bg-color="white"
+                      filled
+                      type="text"
+                      v-model="datos.titulo"
+                      label="Escribe un titulo para el anuncio"
+                      lazy-rules
+                      :rules="[ val => val && val.length > 0 || '']"
+                    />
+                  </q-form>
+                  </div>
+                </div>
+                <!-- vendedor -->
+                <div class="row items-center ">
+                  <label class="col-lg-3 col-md-3 col-sm-3 col-xs-3" style="margin-top:-12px">Vendedor: </label>
+                  <div class="col-9">
+                    <q-form
+                    @submit.prevent.stop="onSubmit"
+                    @reset.prevent.stop="onReset"
+                  >
+                    <q-input
+                      color="purple-9"
+                      bg-color="white"
+                      ref="vendedorB"
+                      dense
+                      filled
+                      type="text"
+                      v-model="datos.vendedor"
+                      label="Vendedor"
+                      lazy-rules
+                      :rules="[ val => val && val.length > 0 || '']"
+                    />
+                  </q-form>
+                  </div>
+                </div>
+                <!-- telefono -->
+                <div class="row items-center ">
+                  <label class="col-lg-3 col-md-3 col-sm-3 col-xs-3" style="margin-top:-12px">Telefono: </label>
+                  <div class="col-9">
+                    <q-form
+                    @submit.prevent.stop="onSubmit"
+                    @reset.prevent.stop="onReset"
+                  >
+                    <q-input
+                      dense
+                      ref="telefonoB"
+                      color="purple-9"
+                      bg-color="white"
+                      type="tel"
+                      filled
+                      v-model="datos.telefono"
+                      label="Telefono"
+                      lazy-rules
+                      :rules="[val => val !== null && val !== '' || ' ',
+                      val => val > 0 && val < 9999999999 || ' ']"
+                    />
+                  </q-form>
+
+                  </div>
+
+                </div>
+                <!-- Descripcion -->
+                <div class="row items-center q-gutter-y-md">
+                  <label class="col-lg-3 col-md-3 col-sm-3 col-xs-3" style="margin-top:-12px">Descripción: </label>
+                  <div class="col-12" >
+                    <q-form
+                    @submit.prevent.stop="onSubmit"
+                    @reset.prevent.stop="onReset"
+                  >
+                    <q-input
+                      color="purple-9"
+                      bg-color="white"
+                      ref="desB"
+                      dense
+                      filled
+                      type="textarea"
+                      v-model="datos.des"
+                      label="Descripcion del articulo"
+                      lazy-rules
+                      :rules="[ val => val && val.length > 0 || '']"
+                    />
+                  </q-form>
+                  </div>
+                </div>
+
+              </div>
+              </div>
+              <!-- vista movil -->
+              <div class=" col-lg-6 col-md-6  col-sm-12 col-xs-12 q-pl-lg bg-white text-black contenedor1 desktop-hide">
+
+                <div class="col-12 q-pl-md">
+                  <!-- estado del mo vil -->
+                  <div class="row items-center " style="margin-bottom:20px">
+                    <label for="inputPantalla" class="col-lg-3 col-md-3  col-sm-3 col-xs-3">Estado: </label>
+                    <div>
+                      <q-form
+                      @submit.prevent.stop="onSubmit"
+                      @reset.prevent.stop="onReset"
+                    >
+                      <q-option-group
+                        v-model="datos.group"
+                        :options="options"
+                        color="primary"
+                        style="margin-left:-17px"
+                        ref="estadoB"
+                        inline
+                        :rules="[ val => val && val.length > 0 || 'Por favor completar']"
                       />
                       </q-form>
                     </div>
@@ -211,111 +532,10 @@
                 </div>
               </div>
 
-              <!-- contenedor 2 informacion del vendedor-->
-              <div class="col-lg-5  col-md-5 col-sm-12 col-xs-12  text-white column justify-center q-gutter-y-md q-px-lg">
-                <!-- titulo -->
-                <div class="row q-gutter-y-md">
-                  <label class="col-9">Titulo breve del anuncio:</label>
-
-                  <div class="col-12">
-                    <q-form
-                    @submit.prevent.stop="onSubmit"
-                    @reset.prevent.stop="onReset"
-                  >
-                    <q-input
-                      color="purple-9"
-                      ref="tituloB"
-                      bg-color="white"
-                      filled
-                      type="text"
-                      v-model="datos.titulo"
-                      label="Escribe un titulo para el anuncio"
-                      lazy-rules
-                      :rules="[ val => val && val.length > 0 || '']"
-                    />
-                  </q-form>
-                  </div>
-                </div>
-                <!-- vendedor -->
-                <div class="row items-center ">
-                  <label class="col-lg-3 col-md-3 col-sm-3 col-xs-3" style="margin-top:-12px">Vendedor: </label>
-                  <div class="col-9">
-                    <q-form
-                    @submit.prevent.stop="onSubmit"
-                    @reset.prevent.stop="onReset"
-                  >
-                    <q-input
-                      color="purple-9"
-                      bg-color="white"
-                      ref="vendedorB"
-                      dense
-                      filled
-                      type="text"
-                      v-model="datos.vendedor"
-                      label="Vendedor"
-                      lazy-rules
-                      :rules="[ val => val && val.length > 0 || '']"
-                    />
-                  </q-form>
-                  </div>
-                </div>
-                <!-- telefono -->
-                <div class="row items-center ">
-                  <label class="col-lg-3 col-md-3 col-sm-3 col-xs-3" style="margin-top:-12px">Telefono: </label>
-                  <div class="col-9">
-                    <q-form
-                    @submit.prevent.stop="onSubmit"
-                    @reset.prevent.stop="onReset"
-                  >
-                    <q-input
-                      dense
-                      ref="telefonoB"
-                      color="purple-9"
-                      bg-color="white"
-                      type="tel"
-                      filled
-                      v-model="datos.telefono"
-                      label="Telefono"
-                      lazy-rules
-                      :rules="[val => val !== null && val !== '' || ' ',
-                      val => val > 0 && val < 99999999 || ' ']"
-                    />
-                  </q-form>
-
-                  </div>
-
-                </div>
-                <!-- Descripcion -->
-                <div class="row items-center q-gutter-y-md">
-                  <label class="col-lg-3 col-md-3 col-sm-3 col-xs-3" style="margin-top:-12px">Descripción: </label>
-                  <div class="col-12" >
-                    <q-form
-                    @submit.prevent.stop="onSubmit"
-                    @reset.prevent.stop="onReset"
-                  >
-                    <q-input
-                      color="purple-9"
-                      bg-color="white"
-                      ref="desB"
-                      dense
-                      filled
-                      type="textarea"
-                      v-model="datos.des"
-                      label="Descripcion del articulo"
-                      lazy-rules
-                      :rules="[ val => val && val.length > 0 || '']"
-                    />
-                  </q-form>
-                  </div>
-                </div>
-
-              </div>
-            </div>
-
-            <div class="row justify-evenly ">
-
+              <!-- contenedor 3 y 4 -->
+              <div class="row justify-evenly ">
               <!-- contenedor 3 añadir imagenes-->
-              <div class="col-lg-6 col-md-6  col-sm-6 col-xs-12  bg-white text-black contenedor1  q-gutter-y-md">
+              <div class="col-lg-6 col-md-6  col-sm-6 col-xs-12  bg-white text-black contenedor1  q-gutter-y-md mobile-hide">
                 <label>Añadir imagenes de producto a vender</label>
 
                 <div class="row justify-evenly " >
@@ -386,7 +606,7 @@
                 <div  class="col-lg-5 col-md-12  col-sm-12 col-xs-12 row justify-evenly">
                   <div class="q-pa-sm q-gutter-lg ">
                     <q-btn
-                      class="iconos"
+                      class="iconose"
                       dark-percentage
                       unelevated
                       color="white"
@@ -401,7 +621,7 @@
                 <div class="q-pa-sm q-gutter-lg">
                   <q-btn
 
-                      class="iconos"
+                      class="iconose"
                       dark-percentage
                       unelevated
                       color="white"
@@ -461,6 +681,16 @@ const modeloB = ref(null)
 const pantallaB = ref(null)
 const romB = ref(null)
 const ramB = ref(null)
+// const precioB2 = ref(null)
+// const tituloB2 = ref(null)
+// const vendedorB2 = ref(null)
+// const telefonoB2 = ref(null)
+// const desB2 = ref(null)
+// const marB2 = ref(null)
+// const modeloB2 = ref(null)
+// const pantallaB2 = ref(null)
+// const romB2 = ref(null)
+// const ramB2 = ref(null)
 const idMovil = ref('')
 let myTimeout = (null)
 const fotosURL = ref([])
@@ -513,7 +743,7 @@ export default {
           icon: 'save'
         })
         router.push('../')
-        myTimeout = setTimeout(inicio, 1500)
+        myTimeout = setTimeout(inicio, 500)
       }
     }
 
@@ -534,7 +764,19 @@ export default {
       pantallaB.value.resetValidation()
       romB.value.resetValidation()
       ramB.value.resetValidation()
-      myTimeout = setTimeout(inicio, 500)
+
+      // precioB2.value.resetValidation()
+      // tituloB2.value.resetValidation()
+      // vendedorB2.value.resetValidation()
+      // telefonoB2.value.resetValidation()
+      // desB2.value.resetValidation()
+      // marB2.value.resetValidation()
+      // modeloB2.value.resetValidation()
+      // pantallaB2.value.resetValidation()
+      // romB2.value.resetValidation()
+      // ramB2.value.resetValidation()
+
+      myTimeout = setTimeout(inicio, 900)
       $q.notify({
         message: 'No se guardo la informacion',
         color: 'red'
@@ -576,7 +818,6 @@ export default {
       guardarDatos,
       files,
       fotosURL,
-
       obtenerURL,
       borrarDatos,
       subirImagen,
@@ -601,6 +842,16 @@ export default {
       pantallaB,
       romB,
       ramB,
+      // precioB2,
+      // tituloB2,
+      // vendedorB2,
+      // telefonoB2,
+      // desB2,
+      // marB2,
+      // modeloB2,
+      // pantallaB2,
+      // romB2,
+      // ramB2,
 
       color: ref('purple-9'),
       options: [
@@ -615,7 +866,7 @@ export default {
       ],
 
       optiones: [
-        'Android', 'Ios', 'Windows'
+        'Android', 'Ios', 'Windows', 'Otro SO'
       ],
 
       marcas: [
@@ -623,7 +874,7 @@ export default {
       ],
 
       pantallas: [
-        '5,5', '6,0', '6,5', 'Otra medida'
+        '5,5', '6,0', '6,5', '5,0', 'Otra medida'
       ]
 
     }
@@ -632,6 +883,7 @@ export default {
 </script>
 
 <style>
+
 .contenedor1{
   padding: 1.3em;
   border-radius: .5em;
@@ -658,7 +910,7 @@ export default {
   border-radius: .5em;
   padding: 1.5em;
   }
-.iconos{
+.iconose{
   padding: 1em;
   border-radius: .5em;
 }
