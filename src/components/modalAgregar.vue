@@ -312,6 +312,7 @@
             </div>
 
             <div class="row justify-evenly ">
+
               <!-- contenedor 3 añadir imagenes-->
               <div class="col-lg-6 col-md-6  col-sm-6 col-xs-12  bg-white text-black contenedor1  q-gutter-y-md">
                 <label>Añadir imagenes de producto a vender</label>
@@ -429,6 +430,7 @@ import { ref } from 'vue'
 import { db } from 'boot/database'
 import { collection, addDoc } from 'firebase/firestore'
 import { useRouter } from 'vue-router'
+import { getStorage, ref as ref2, uploadBytes } from 'firebase/storage'
 
 const datos = ref({
   marca: null,
@@ -467,7 +469,7 @@ export default {
 
   setup () {
     const $q = useQuasar()
-
+    const contaImg = ref(0)
     // const ima = ref(null)
     const inicio = function () {
       reloj()
@@ -488,13 +490,30 @@ export default {
     // subir imagen
     const subirImagen = function () {
       console.log('subirimagenes')
-      $q.notify({
-        message: 'Se guardo la informacion',
-        color: 'green',
-        icon: 'save'
-      })
-      router.push('../')
-      myTimeout = setTimeout(inicio, 1000)
+      const storage = getStorage()
+      files.value.forEach((foto) => {
+        const storageRef = ref2(storage, idMovil.value + '/' + foto.name)
+        uploadBytes(storageRef, foto).then((snapshot) => {
+          contaImg.value++
+          eslaUltima()
+          console.log('Uploaded a blob or file!')
+        })
+      }
+
+      )
+    }
+
+    // iguala si es la ultima imagen para poder subirla a storage
+    const eslaUltima = function () {
+      if (contaImg.value === files.value.length) {
+        $q.notify({
+          message: 'Se guardo la informacion',
+          color: 'green',
+          icon: 'save'
+        })
+        router.push('../')
+        myTimeout = setTimeout(inicio, 1500)
+      }
     }
 
     const reloj = function () {
