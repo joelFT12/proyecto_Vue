@@ -27,7 +27,7 @@
           <!-- <q-btn class="q-mr-md" round color="primary" icon="fa-solid fa-circle-plus" /> -->
           <q-btn class="q-mr-md" round color="primary" icon="fa-solid fa-cart-shopping" />
         </div>
-        <div class="gt-sm hidde"><modalAgregar></modalAgregar></div>
+        <div class="gt-sm hidde" round><modalAgregar></modalAgregar></div>
       </q-toolbar>
     </q-header>
 
@@ -91,14 +91,11 @@
           <q-item-section>Inicio</q-item-section>
         </q-item>
         <q-separator dark />
-        <q-item class=" q-py-md " clickable >
-          <q-item-section avatar class="margen2">
-            <q-avatar>
-              <modalAgregar></modalAgregar>
-            </q-avatar>
-          </q-item-section>
-          <q-item-section>Nuevo anuncio</q-item-section>
-        </q-item>
+        <div class=""  >
+
+              <modalAgregar style="width: 100%; height: 4.5rem;"></modalAgregar>
+
+        </div>
         <q-separator dark />
         <q-item class=" q-py-md " clickable>
           <q-item-section avatar class="margen3">

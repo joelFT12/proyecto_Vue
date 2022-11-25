@@ -1,7 +1,19 @@
 <template>
 
     <div class="">
-      <q-btn round labal="maximized" class="botn" desktop-hide icon="fa-solid fa-circle-plus"  @click="dialog = true" />
+       <q-btn round labal="maximized" class=" gt-sm" icon="fa-solid fa-circle-plus"  @click="dialog = true" />
+      <!-- <q-item class="gt-sm "  style="margin-left: 0;" clickable round @click="dialog = true">
+        <q-item-section class="">
+          <q-icon name="fa-solid fa-circle-plus" class="q-m-xs" size="sm"/>
+        </q-item-section>
+      </q-item> -->
+
+      <q-item class=" tam row items-center justify-center lt-md " clickable @click="dialog = true">
+
+          <q-icon class="q-mx-lg" size="sm" name="fa-solid fa-circle-plus"/>
+          <span>Nuevo anuncio</span>
+
+      </q-item>
 
       <q-dialog
         v-model="dialog"
@@ -883,7 +895,13 @@ export default {
 </script>
 
 <style>
+.tam{
+  width: 360px;
 
+  margin: 0 0 0 -60px;
+  height: 71px;
+
+}
 .contenedor1{
   padding: 1.3em;
   border-radius: .5em;
